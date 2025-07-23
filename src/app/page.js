@@ -68,6 +68,34 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const nav = document.querySelector('nav');
+      console.log('Scroll position:', window.scrollY); // Debugging log
+      
+      if (window.scrollY > 50) {
+        console.log('Adding transparency and blur'); // Debugging log
+        // Apply styles directly
+        nav.style.backgroundColor = 'rgba(17, 24, 39, 0.9)'; // bg-gray-900 with 70% opacity
+        nav.style.backdropFilter = 'blur(10px)';
+      } else {
+        console.log('Removing transparency and blur'); // Debugging log
+        // Reset to original styles
+        nav.style.backgroundColor = 'rgb(17, 24, 39)'; // bg-gray-900 full opacity
+        nav.style.backdropFilter = 'none';
+      }
+    };
+
+    // Run once on mount to set initial state
+    handleScroll();
+    
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -106,7 +134,7 @@ export default function Home() {
       {/* In Next.js App Router, head tags are defined in a separate metadata object or layout.js file */}
 
       {/* Navigation */}
-      <nav className="bg-gray-900 shadow-md fixed w-full z-10">
+      <nav className="shadow-md fixed w-full z-10 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-06 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
@@ -123,7 +151,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-26 pb-15 bg-gray-900 text-white">
+      <section id="home" className="pt-35 pb-15 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <img src="/last.jpg" alt='Devansh' className='w-75 h-75 mx-auto rounded-full border-4 border-white shadow-lg object-cover transition-transform duration-1000 hover:scale-105'> 
           </img>
@@ -162,7 +190,6 @@ export default function Home() {
               }}
             />
           </div>
-          <a href="#contact" className="mt-6 inline-block bg-white text-blue-600 font-semibold py-2 px-4 rounded-md hover:bg-gray-200 transition-all duration-300 hover:scale-105">Get in Touch</a>
         </div>
       </section>
 
@@ -276,10 +303,10 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p>© {new Date().getFullYear()} Your Name. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Devansh KM. All rights reserved.</p>
           <div className="mt-2">
-            <a href="https://github.com/yourusername" className="text-gray-400 hover:text-white mx-2">GitHub</a>
-            <a href="https://linkedin.com/in/yourusername" className="text-gray-400 hover:text-white mx-2">LinkedIn</a>
+            <a href="https://github.com/devtcu" target='_blank' className="text-gray-400 hover:text-white mx-2">GitHub</a>
+            <a href="https://www.linkedin.com/in/devansh-km/" target='_blank'  className="text-gray-400 hover:text-white mx-2">LinkedIn</a>
           </div>
         </div>
       </footer>
