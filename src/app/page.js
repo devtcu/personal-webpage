@@ -71,15 +71,12 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const nav = document.querySelector('nav');
-      console.log('Scroll position:', window.scrollY); // Debugging log
       
       if (window.scrollY > 50) {
-        console.log('Adding transparency and blur'); // Debugging log
         // Apply styles directly
         nav.style.backgroundColor = 'rgba(17, 24, 39, 0.9)'; // bg-gray-900 with 70% opacity
         nav.style.backdropFilter = 'blur(10px)';
       } else {
-        console.log('Removing transparency and blur'); // Debugging log
         // Reset to original styles
         nav.style.backgroundColor = 'rgb(17, 24, 39)'; // bg-gray-900 full opacity
         nav.style.backdropFilter = 'none';
