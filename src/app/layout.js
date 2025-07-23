@@ -8,8 +8,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={jetbrainsMono.variable}>
-      <body className="font-jetbrains">{children}</body>
+    <html lang="en" className={`bg-black ${jetbrainsMono.variable}`}>
+      <body className={`font-jetbrains min-h-screen bg-black ${jetbrainsMono.variable}`}>{children}</body>
     </html>
   )
 }

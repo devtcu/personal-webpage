@@ -12,9 +12,6 @@ export default function Home() {
   const projectCardsRef = useRef([]);
 
   useEffect(() => {
-    // Make sure we're in the browser environment
-    if (typeof window === 'undefined') return;
-    
     // Animation for section headers
     const sectionRefs = [aboutRef, projectsRef, contactRef];
     
@@ -72,32 +69,28 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // Make sure we're in the browser environment
-    if (typeof window !== 'undefined') {
-      const handleScroll = () => {
-        const nav = document.querySelector('nav');
-        if (nav) {
-          if (window.scrollY > 50) {
-            // Apply styles directly
-            nav.style.backgroundColor = 'rgba(17, 24, 39, 0.9)'; // bg-gray-900 with 70% opacity
-            nav.style.backdropFilter = 'blur(10px)';
-          } else {
-            // Reset to original styles
-            nav.style.backgroundColor = 'rgb(17, 24, 39)'; // bg-gray-900 full opacity
-            nav.style.backdropFilter = 'none';
-          }
-        }
-      };
-
-      // Run once on mount to set initial state
-      handleScroll();
+    const handleScroll = () => {
+      const nav = document.querySelector('nav');
       
-      window.addEventListener('scroll', handleScroll);
+      if (window.scrollY > 50) {
+        // Apply styles directly
+        nav.style.backgroundColor = 'rgba(17, 24, 39, 0.9)'; // bg-gray-900 with 70% opacity
+        nav.style.backdropFilter = 'blur(10px)';
+      } else {
+        // Reset to original styles
+        nav.style.backgroundColor = 'rgb(17, 24, 39)'; // bg-gray-900 full opacity
+        nav.style.backdropFilter = 'none';
+      }
+    };
 
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }
+    // Run once on mount to set initial state
+    handleScroll();
+    
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const handleChange = (e) => {
@@ -133,16 +126,16 @@ export default function Home() {
   `;
 
   return (
-    <div className="min-h-screen bg-customBackground">
+    <div className="min-h-screen bg-black">
       <style jsx global>{animationStyles}</style>
       {/* In Next.js App Router, head tags are defined in a separate metadata object or layout.js file */}
 
       {/* Navigation */}
-      <nav className="shadow-md fixed w-full z-10 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-06 lg:px-8">
+      <nav className="shadow-md fixed w-full z-10 transition-all duration-300 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <h1 className="text-3xl font-bold text-gray-600">devansh.</h1>
+              <h1 className="text-3xl font-bold text-gray-400">devansh.</h1>
             </div>
             <div className="flex items-center space-x-4">
               <Link href="#home" className="text-gray-400 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</Link>
@@ -155,10 +148,9 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-35 pb-15 bg-gray-900 text-white">
+      <section id="home" className="hero-padding pb-10 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <img src="/last.jpg" alt='Devansh' className='w-75 h-75 mx-auto rounded-full border-4 border-white shadow-lg object-cover transition-transform duration-1000 hover:scale-105'> 
-          </img>
+          <img src="/last.jpg" alt='Devansh' className='profile-image mx-auto rounded-full border-4 border-white shadow-lg object-cover hover:scale-105'></img>
           <div className="min-h-[40px] md:min-h-[48px] mt-8">
             <Typewriter
               onInit={(typewriter) => {
@@ -206,8 +198,8 @@ export default function Home() {
           </p>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <h3 className="text-xl font-semibold text-gray-700">Skills</h3>
-              <ul className="mt-2 text-gray-600">
+              <h3 className="text-xl font-semibold text-white">Skills</h3>
+              <ul className="mt-2 text-gray-400">
                 <li>JavaScript</li>
                 <li>React & Next.js</li>
                 <li>Python</li>
@@ -215,12 +207,12 @@ export default function Home() {
               </ul>
             </div>
             <div className="text-center">
-              <h3 className="text-xl font-semibold text-gray-700">Experience</h3>
-              <p className="mt-2 text-gray-600">[Add your experience, e.g., Internship at XYZ, Freelance Developer]</p>
+              <h3 className="text-xl font-semibold text-white">Experience</h3>
+              <p className="mt-2 text-gray-400">[Add your experience, e.g., Internship at XYZ, Freelance Developer]</p>
             </div>
             <div className="text-center">
-              <h3 className="text-xl font-semibold text-gray-700">Education</h3>
-              <p className="mt-2 text-gray-600">B.S. in Physics, Math, Texas Christian University</p>
+              <h3 className="text-xl font-semibold text-white">Education</h3>
+              <p className="mt-2 text-gray-400">B.S. in Physics, Math, Texas Christian University</p>
             </div>
           </div>
         </div>
@@ -257,7 +249,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 bg-customBackground">
+      <section id="contact" className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 ref={contactRef} className="text-3xl font-bold text-white text-center opacity-0">Contact Me</h2>
           <form onSubmit={handleSubmit} className="mt-8 max-w-lg mx-auto">
