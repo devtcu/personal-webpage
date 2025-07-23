@@ -12,6 +12,9 @@ export default function Home() {
   const projectCardsRef = useRef([]);
 
   useEffect(() => {
+    // Make sure we're in the browser environment
+    if (typeof window === 'undefined') return;
+    
     // Animation for section headers
     const sectionRefs = [aboutRef, projectsRef, contactRef];
     
@@ -69,28 +72,32 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const nav = document.querySelector('nav');
+    // Make sure we're in the browser environment
+    if (typeof window !== 'undefined') {
+      const handleScroll = () => {
+        const nav = document.querySelector('nav');
+        if (nav) {
+          if (window.scrollY > 50) {
+            // Apply styles directly
+            nav.style.backgroundColor = 'rgba(17, 24, 39, 0.9)'; // bg-gray-900 with 70% opacity
+            nav.style.backdropFilter = 'blur(10px)';
+          } else {
+            // Reset to original styles
+            nav.style.backgroundColor = 'rgb(17, 24, 39)'; // bg-gray-900 full opacity
+            nav.style.backdropFilter = 'none';
+          }
+        }
+      };
+
+      // Run once on mount to set initial state
+      handleScroll();
       
-      if (window.scrollY > 50) {
-        // Apply styles directly
-        nav.style.backgroundColor = 'rgba(17, 24, 39, 0.9)'; // bg-gray-900 with 70% opacity
-        nav.style.backdropFilter = 'blur(10px)';
-      } else {
-        // Reset to original styles
-        nav.style.backgroundColor = 'rgb(17, 24, 39)'; // bg-gray-900 full opacity
-        nav.style.backdropFilter = 'none';
-      }
-    };
+      window.addEventListener('scroll', handleScroll);
 
-    // Run once on mount to set initial state
-    handleScroll();
-    
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
   }, []);
 
   const handleChange = (e) => {
