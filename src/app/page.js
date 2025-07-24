@@ -4,8 +4,21 @@ import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import Typewriter from 'typewriter-effect';
 
-// Helper function to check if code is running in browser
+// Helper functions for browser detection and environment
 const isBrowser = () => typeof window !== 'undefined';
+const isProduction = process.env.NODE_ENV === 'production';
+const safeDomOperation = (callback) => {
+  if (isBrowser()) {
+    // Delay execution to ensure DOM is fully loaded
+    setTimeout(() => {
+      try {
+        callback();
+      } catch (error) {
+        console.warn('DOM operation failed:', error);
+      }
+    }, 0);
+  }
+};
 
 export default function Home() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -384,6 +397,8 @@ export default function Home() {
   .wave-bg {
     background: url('/parallax/wave1.jpg') repeat-x;
     background-size: cover;
+    background-position: center;
+    background-color: rgba(17, 24, 39, 0.9); /* Fallback if image doesn't load */
     width: 200%;
     height: 100%;
     opacity: 0.3; /* More subtle to allow text to be readable */
@@ -391,6 +406,7 @@ export default function Home() {
     left: -12%; /* Initial position, moved to the right */
     top: 0;
     transform: translateX(0); /* Ensure initial position is set for animation */
+    will-change: transform; /* Hint to browser for better performance */
   }
 
   /* Ensure profile image and text are above the waves */
@@ -432,12 +448,14 @@ export default function Home() {
     position: absolute;
     width: 120px;
     height: 100px;
-    background: url('/parallax/bird.webp') no-repeat;
+    background: url('/parallax/bird.webp') no-repeat center center;
     background-size: contain;
+    background-color: transparent; /* Ensure transparent background */
     opacity: 0;
     transition: transform 0.2s linear, opacity 0.3s ease;
     filter: brightness(1.2) contrast(1.1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
     z-index: 5;
+    transform-origin: center center; /* Better transformation behavior */
   }
   
   .bird-1 {
@@ -597,7 +615,18 @@ export default function Home() {
         
         {/* Hero content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-6">
-          <img src="/last.jpg" alt='Devansh' className='profile-image mx-auto rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 w-48 h-48'></img>
+          <div className="relative mx-auto w-48 h-48">
+            <img 
+              src="/last.jpg" 
+              alt='Devansh' 
+              className='profile-image mx-auto rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 w-48 h-48 transition-transform duration-300'
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.style.backgroundColor = '#4B5563'; // bg-gray-600 as fallback
+                e.target.alt = 'Profile Image';
+              }}
+            ></img>
+          </div>
           <div className="min-h-[40px] md:min-h-[48px] mt-6">
             <Typewriter
               onInit={(typewriter) => {
