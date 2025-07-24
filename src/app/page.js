@@ -629,10 +629,10 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="pt-16 pb-16 bg-gray-900 relative overflow-hidden">
+      <section id="about" className="pt-20 pb-28 bg-gray-900 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Social Links Area */}
-          <div className="flex justify-center space-x-8 mb-12">
+          <div className="flex justify-center space-x-8 mb-16">
             <a href="https://github.com/devtcu" target="_blank" rel="noopener noreferrer" className="social-icon text-gray-400 hover:text-white transition-all duration-300">
               <span className="sr-only">GitHub</span>
               <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -667,10 +667,14 @@ export default function Home() {
               <div className="bird bird-2"></div>
               <div className="bird bird-3"></div>
             </div>
-            <h2 ref={aboutRef} className="text-3xl font-bold text-blue-500 inline-block opacity-0 relative z-10">About Me</h2>
+            <h2 ref={aboutRef} className="text-3xl font-bold text-blue-500 inline-block opacity-0 relative z-10 mb-11">About Me</h2>
           </div>
           <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
-            I'm a software developer with a passion for learning and problem-solving. Proficient in various programming languages and frameworks, I strive to build efficient and scalable solutions. Currently, I'm [add your current role or status, e.g., studying at XYZ University or working at ABC Company].
+            I'm a physics major who graduated from Texas Christian University with a B.S in Physics in May 2025. 
+            I've been actively involved in a variety of projects, including 
+            
+            
+             developer with a passion for learning and problem-solving. Proficient in various programming languages and frameworks, I strive to build efficient and scalable solutions. Currently, I'm [add your current role or status, e.g., studying at XYZ University or working at ABC Company].
           </p>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
@@ -697,7 +701,7 @@ export default function Home() {
       {/* Projects Section */}
       <section id="projects" className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 ref={projectsRef} className="text-3xl font-bold text-blue-600 text-center opacity-0">Projects</h2>
+          <h2 ref={projectsRef} className="text-3xl font-bold text-blue-600 text-center opacity-0 mb-16">Projects</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div 
               ref={el => projectCardsRef.current[0] = el}
@@ -776,10 +780,7 @@ export default function Home() {
       <footer className="bg-gray-900 text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p>© {new Date().getFullYear()} Devansh KM. All rights reserved.</p>
-          <div className="mt-2">
-            <a href="https://github.com/devtcu" target='_blank' className="text-gray-400 hover:text-white mx-2">GitHub</a>
-            <a href="https://www.linkedin.com/in/devansh-km/" target='_blank'  className="text-gray-400 hover:text-white mx-2">LinkedIn</a>
-          </div>
+         
         </div>
       </footer>
     </div>
