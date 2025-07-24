@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import Typewriter from 'typewriter-effect';
 
+// Helper function to check if code is running in browser
+const isBrowser = () => typeof window !== 'undefined';
+
 export default function Home() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const aboutRef = useRef(null);
@@ -14,6 +17,9 @@ export default function Home() {
   const birdsRef = useRef(null);
 
   useEffect(() => {
+    // Skip on server-side
+    if (!isBrowser()) return;
+    
     // Animation for section headers
     const sectionRefs = [aboutRef, projectsRef, contactRef];
     
@@ -72,6 +78,9 @@ export default function Home() {
 
   // Add parallax effect for Japanese wave background
   useEffect(() => {
+    // Skip on server-side
+    if (!isBrowser()) return;
+    
     const handleParallax = () => {
       if (!parallaxRef.current) return;
       
@@ -107,6 +116,9 @@ export default function Home() {
   
   // Add horizontal bird movement across About Me title - simplified approach
   useEffect(() => {
+    // Skip on server-side
+    if (!isBrowser()) return;
+    
     let lastScrollY = window.scrollY;
     let ticking = false;
     
@@ -217,6 +229,9 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    // Skip on server-side
+    if (!isBrowser()) return;
+    
     const handleScroll = () => {
       const nav = document.querySelector('nav');
       const profileImage = document.querySelector('.profile-image');
@@ -375,6 +390,7 @@ export default function Home() {
     position: absolute;
     left: -12%; /* Initial position, moved to the right */
     top: 0;
+    transform: translateX(0); /* Ensure initial position is set for animation */
   }
 
   /* Ensure profile image and text are above the waves */
@@ -446,6 +462,9 @@ export default function Home() {
 
   // Add gentle fade-in effect for sections and paragraphs as user scrolls down
   useEffect(() => {
+    // Skip on server-side
+    if (!isBrowser()) return;
+    
     // Create refs for all sections that should fade in
     const aboutSection = document.getElementById('about');
     const projectsSection = document.getElementById('projects');
@@ -577,7 +596,7 @@ export default function Home() {
         </div>
         
         {/* Hero content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-5 mt-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-6">
           <img src="/last.jpg" alt='Devansh' className='profile-image mx-auto rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 w-48 h-48'></img>
           <div className="min-h-[40px] md:min-h-[48px] mt-6">
             <Typewriter
