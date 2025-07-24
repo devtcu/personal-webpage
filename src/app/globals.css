@@ -18,7 +18,7 @@
 
 html, body {
   background-color: #000000; /* Black background color */
-  
+  scroll-behavior: smooth;
 }
 
 body {
@@ -31,9 +31,10 @@ body {
 
 /* Custom utility classes */
 .profile-image {
-  width: 180px;
-  height: 180px;
-  transition: width 0.3s ease, height 0.3s ease;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  transition: width 0.73s ease, height 0.73s ease;
 }
 
 .hero-padding {
@@ -45,4 +46,25 @@ body {
   width: 350px;
   height: 350px;
   transition: width 0.73s ease, height 0.73s ease;
+}
+
+/* Adjust spacing for wave positioning */
+#home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Fix position of waves */
+.wave1, .wave2 {
+  background-position: bottom;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
 }
