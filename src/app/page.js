@@ -1000,21 +1000,21 @@ export default function Home() {
             <div 
               ref={el => projectCardsRef.current[0] = el}
               className="bg-white p-6 rounded-lg shadow-md opacity-0 transform translate-y-4 transition-all duration-500">
-              <h3 className="text-xl font-semibold text-gray-900">Project 1</h3>
-              <p className="mt-2 text-gray-600">A brief description of your project, technologies used, and its impact.</p>
+              <h3 className="text-xl font-semibold text-gray-900">Topological Data Analysis</h3>
+              <p className="mt-2 text-gray-600">Using persistence homology to evaluate data</p>
               <a href="#" className="mt-4 inline-block text-blue-600 hover:underline">View Project</a>
             </div>
             <div 
               ref={el => projectCardsRef.current[1] = el}
               className="bg-white p-6 rounded-lg shadow-md opacity-0 transform translate-y-4 transition-all duration-500">
-              <h3 className="text-xl font-semibold text-gray-900">Project 2</h3>
+              <h3 className="text-xl font-semibold text-gray-900">Agent-Based Model</h3>
               <p className="mt-2 text-gray-600">A brief description of your project, technologies used, and its impact.</p>
               <a href="#" className="mt-4 inline-block text-blue-600 hover:underline">View Project</a>
             </div>
             <div 
               ref={el => projectCardsRef.current[2] = el}
               className="bg-white p-6 rounded-lg shadow-md opacity-0 transform translate-y-4 transition-all duration-500">
-              <h3 className="text-xl font-semibold text-gray-900">Project 3</h3>
+              <h3 className="text-xl font-semibold text-gray-900">Pandemic Simulation</h3>
               <p className="mt-2 text-gray-600">A brief description of your project, technologies used, and its impact.</p>
               <a href="#" className="mt-4 inline-block text-blue-600 hover:underline">View Project</a>
             </div>
