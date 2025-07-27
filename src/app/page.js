@@ -28,6 +28,7 @@ export default function Home() {
   const projectCardsRef = useRef([]);
   const parallaxRef = useRef(null);
   const birdsRef = useRef(null);
+  const starsRef = useRef(null);
 
   useEffect(() => {
     // Skip on server-side
@@ -240,10 +241,56 @@ export default function Home() {
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
+  
+  // Add effect for the single giant star in About Me section
+  useEffect(() => {
+    // Skip on server-side
+    if (!isBrowser()) return;
+    
+    // Verify star.gif loading
+    const debugImg = new Image();
+    debugImg.onload = () => console.log('Giant star image loaded successfully');
+    debugImg.onerror = () => console.error('Failed to load giant star image');
+    debugImg.src = '/parallax/star.gif';
+    
+    // Ensure star is properly contained in the About section
+    const setupStar = () => {
+      if (!starsRef.current) return;
+      
+      const aboutSection = document.getElementById('about');
+      if (!aboutSection) return;
+      
+      // Get section dimensions
+      const rect = aboutSection.getBoundingClientRect();
+      
+      // Ensure the star container has the correct dimensions
+      starsRef.current.style.position = 'absolute';
+      starsRef.current.style.top = '0';
+      starsRef.current.style.left = '0';
+      starsRef.current.style.width = '100%';
+      starsRef.current.style.height = '100%';
+      starsRef.current.style.zIndex = '0';
+      starsRef.current.style.overflow = 'hidden';
+      
+      console.log('Star effect is set up and contained within About section');
+    };
+    
+    // Apply immediately and on window resize
+    setupStar();
+    window.addEventListener('resize', setupStar);
+    
+    return () => {
+      window.removeEventListener('resize', setupStar);
+    };
+  }, []);
 
   useEffect(() => {
     // Skip on server-side
     if (!isBrowser()) return;
+    
+    let isHoveringTopArea = false;
+    let lastScrollY = 0;
+    let headerTimeout = null;
     
     const handleScroll = () => {
       const nav = document.querySelector('nav');
@@ -254,6 +301,7 @@ export default function Home() {
         const imageBottom = imageRect.bottom;
         const navHeight = nav.offsetHeight;
         const scrollY = window.scrollY;
+        lastScrollY = scrollY;
         
         // Calculate how much we've scrolled past the bottom of the image
         // We subtract the nav height so we start hiding when the image bottom reaches the nav bottom
@@ -263,7 +311,8 @@ export default function Home() {
         const maxScroll = nav.offsetHeight;
         
         // Calculate how much to translate the header up
-        const translateY = Math.min(scrollPastImage, maxScroll);
+        // Consider hover state if not actively scrolling down
+        const translateY = (isHoveringTopArea && !activeScrolling) ? 0 : Math.min(scrollPastImage, maxScroll);
         
         // Make the header translucent when scrolling down
         const startFade = 20; // Start fading after scrolling this many pixels
@@ -288,17 +337,149 @@ export default function Home() {
         
         // Apply the hide-on-scroll effect
         nav.style.transform = `translateY(-${translateY}px)`;
-        nav.style.transition = 'transform 0.4s linear, background-color 0.3s ease';
+        
+        // Use different transition timing for appearing (faster) vs disappearing (slower)
+        const transitionTiming = translateY === 0 
+          ? 'transform 0.25s ease-out, background-color 0.3s ease' // Faster when appearing
+          : 'transform 0.4s ease-in, background-color 0.3s ease';  // Slower when disappearing
+        
+        nav.style.transition = transitionTiming;
+      }
+    };
+    
+    // Show header when mouse is in top area
+    const showHeader = () => {
+      if (!isHoveringTopArea) {
+        isHoveringTopArea = true;
+        handleScroll(); // Update header visibility immediately
+        
+        // Clear existing timeout if any
+        if (headerTimeout) {
+          clearTimeout(headerTimeout);
+        }
+      }
+    };
+    
+    // Hide header after delay when mouse leaves top area
+    const hideHeaderAfterDelay = () => {
+      // Clear existing timeout if any
+      if (headerTimeout) {
+        clearTimeout(headerTimeout);
+      }
+      
+      // Set a timeout to hide the header after a delay
+      headerTimeout = setTimeout(() => {
+        isHoveringTopArea = false;
+        handleScroll();
+      }, 1000); // 1 second delay before hiding header
+    };
+    
+    // Store last scroll position to detect direction
+    let lastScrollPos = window.scrollY;
+    let scrollTimer = null;
+    let activeScrolling = false;
+    
+    // Handle scroll events to override hover behavior when scrolling down
+    const handleScrollDirection = () => {
+      const currentScrollPos = window.scrollY;
+      // Consider scrolling down only if we've moved more than a few pixels
+      // This prevents tiny scroll fluctuations from hiding the header
+      const scrollingDown = currentScrollPos > (lastScrollPos + 5);
+      lastScrollPos = currentScrollPos;
+      
+      // Track active scrolling
+      activeScrolling = true;
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        activeScrolling = false;
+      }, 100); // Reset after 100ms of no scrolling
+      
+      // If scrolling down significantly and not at the top, hide header immediately regardless of hover
+      if (scrollingDown && currentScrollPos > 100) {
+        if (isHoveringTopArea) {
+          isHoveringTopArea = false;
+          handleScroll(); // Update header visibility immediately
+        }
+      }
+    };
+    
+    // Handle mouse position to show header when near top of screen
+    const handleMouseMove = (e) => {
+      // Check if mouse is in the top 20% (approximately) of the viewport
+      const topFifthHeight = window.innerHeight * 0.2;
+      const isInTopArea = e.clientY <= topFifthHeight;
+      
+      // Only show header if mouse is in top area and we're not actively scrolling down
+      if (isInTopArea) {
+        showHeader();
+      } else if (isHoveringTopArea) {
+        hideHeaderAfterDelay();
+      }
+    };
+    
+    // Handle touch events for the header trigger area
+    const setupTouchEvents = () => {
+      const triggerArea = document.getElementById('header-trigger-area');
+      
+      if (triggerArea) {
+        // Show header when touching trigger area
+        triggerArea.addEventListener('touchstart', (e) => {
+          e.preventDefault(); // Prevent default touch behavior
+          showHeader();
+        });
+        
+        // Setup mouse events for the trigger area
+        triggerArea.addEventListener('mouseenter', showHeader);
+        triggerArea.addEventListener('mouseleave', hideHeaderAfterDelay);
+      }
+      
+      // Also handle direct nav interaction
+      const nav = document.querySelector('nav');
+      if (nav) {
+        nav.addEventListener('mouseenter', showHeader);
+        nav.addEventListener('mouseleave', hideHeaderAfterDelay);
+        nav.addEventListener('touchstart', (e) => {
+          showHeader();
+        }, { passive: true });
       }
     };
 
-    // Run once on mount to set initial state
+    // Run initial setup
     handleScroll();
+    setTimeout(setupTouchEvents, 100); // Short delay to ensure DOM is ready
     
+    // Add event listeners
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScrollDirection); // Add scroll direction detection
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
+      // Clean up all event listeners
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScrollDirection);
+      window.removeEventListener('mousemove', handleMouseMove);
+      
+      const triggerArea = document.getElementById('header-trigger-area');
+      if (triggerArea) {
+        triggerArea.removeEventListener('touchstart', showHeader);
+        triggerArea.removeEventListener('mouseenter', showHeader);
+        triggerArea.removeEventListener('mouseleave', hideHeaderAfterDelay);
+      }
+      
+      const nav = document.querySelector('nav');
+      if (nav) {
+        nav.removeEventListener('mouseenter', showHeader);
+        nav.removeEventListener('mouseleave', hideHeaderAfterDelay);
+        nav.removeEventListener('touchstart', showHeader);
+      }
+      
+      if (headerTimeout) {
+        clearTimeout(headerTimeout);
+      }
+      
+      if (scrollTimer) {
+        clearTimeout(scrollTimer);
+      }
     };
   }, []);
 
@@ -407,6 +588,9 @@ export default function Home() {
     top: 0;
     transform: translateX(0); /* Ensure initial position is set for animation */
     will-change: transform; /* Hint to browser for better performance */
+    /* Add gradient fade at bottom edge - more gradual fade */
+    mask-image: linear-gradient(to bottom, black 70%, rgba(0,0,0,0.8) 80%, rgba(0,0,0,0.6) 85%, rgba(0,0,0,0.2) 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, rgba(0,0,0,0.8) 80%, rgba(0,0,0,0.6) 85%, rgba(0,0,0,0.2) 95%, transparent 100%);
   }
 
   /* Ensure profile image and text are above the waves */
@@ -475,6 +659,40 @@ export default function Home() {
     left: -160px;
     width: 150px;
     height: 130px;
+  }
+  
+  /* Simplified stars effect - one giant centered star */
+  .stars-container {
+    position: absolute;
+    width: 100%;
+    height: 100%; 
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0; /* Lowest z-index to keep it behind everything */
+    overflow: hidden; /* Hide overflow to prevent seeping */
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+  
+  .giant-star {
+    position: relative;
+    width: 1200px; /* Increased from 800px to 1200px for a bigger star */
+    height: 1200px; /* Increased from 800px to 1200px for a bigger star */
+    background: url('/parallax/star.gif') no-repeat center center;
+    background-size: contain;
+    opacity: 0.3; /* Much fainter opacity */
+    filter: brightness(1.5) contrast(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+    animation: giant-twinkle 15s infinite ease-in-out; /* Increased from 8s to 15s for slower pulsation */
+  }
+  
+  @keyframes giant-twinkle {
+    0% { opacity: 0.2; transform: scale(0.95); filter: brightness(1.2) drop-shadow(0 0 5px rgba(255, 255, 255, 0.1)); }
+    50% { opacity: 0.3; transform: scale(1.05); filter: brightness(1.5) drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)); }
+    100% { opacity: 0.2; transform: scale(0.95); filter: brightness(1.2) drop-shadow(0 0 5px rgba(255, 255, 255, 0.1)); }
   }
   `;
 
@@ -589,6 +807,14 @@ export default function Home() {
       <style jsx global>{animationStyles}</style>
       {/* In Next.js App Router, head tags are defined in a separate metadata object or layout.js file */}
 
+      {/* Top touch/hover area for showing header */}
+      <div 
+        className="fixed top-0 left-0 w-full h-12 z-40 cursor-default" 
+        style={{ pointerEvents: 'auto' }}
+        aria-hidden="true"
+        id="header-trigger-area"
+      ></div>
+
       {/* Navigation */}
       <nav className="shadow-md fixed w-full z-50 transition-all duration-300 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -607,19 +833,23 @@ export default function Home() {
       </nav>
 
       {/* Hero Section with Parallax Wave Background */}
-      <section id="home" className="pt-32 pb-15 relative bg-gray-900 text-white">
+      <section id="home" className="pt-28 pb-24 relative bg-gray-900 text-white">
         {/* Parallax Wave Background */}
         <div className="absolute inset-0 overflow-hidden" ref={parallaxRef}>
           <div className="parallax-layer wave-bg"></div>
         </div>
         
+        {/* Gradient overlay for smooth transition to next section */}
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-900 to-transparent"></div>
+        
         {/* Hero content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-6">
-          <div className="relative mx-auto w-48 h-48">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-12">
+          <div className="relative mx-auto" style={{ width: '270px', height: '270px' }}>
             <img 
               src="/last.jpg" 
               alt='Devansh' 
-              className='profile-image mx-auto rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 w-48 h-48 transition-transform duration-300'
+              className='profile-image mx-auto rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 transition-transform duration-300'
+              style={{ width: '100%', height: '100%' }}
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.style.backgroundColor = '#4B5563'; // bg-gray-600 as fallback
@@ -627,7 +857,7 @@ export default function Home() {
               }}
             ></img>
           </div>
-          <div className="min-h-[40px] md:min-h-[48px] mt-6">
+          <div className="min-h-[40px] md:min-h-[48px] mt-8">
             <Typewriter
               onInit={(typewriter) => {
                 typewriter
@@ -646,7 +876,7 @@ export default function Home() {
             />
           </div>
           {/* Typewriter for subtitle */}
-          <div className="min-h-[56px] md:min-h-[64px] mt-4 mb-12">
+          <div className="min-h-[56px] md:min-h-[64px] mt-6 mb-16">
             <Typewriter
               onInit={(typewriter) => {
                 typewriter
@@ -678,7 +908,18 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="pt-20 pb-28 bg-gray-900 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Gradient overlay for smooth transition from previous section */}
+        <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-gray-900 to-gray-900 opacity-95"></div>
+        {/* Single Giant Star - Centered and positioned at bottom layer with lowest z-index */}
+        <div className="stars-container" ref={starsRef}>
+          {/* One giant star using CSS background approach for better control */}
+          <div className="giant-star"></div>
+        </div>
+        
+        {/* Gradient overlay for smooth transition to next section */}
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-900 to-gray-900 opacity-95" style={{ zIndex: 1 }}></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative" style={{ zIndex: 2 }}>
           {/* Social Links Area */}
           <div className="flex justify-center space-x-8 mb-16">
             <a href="https://github.com/devtcu" target="_blank" rel="noopener noreferrer" className="social-icon text-gray-400 hover:text-white transition-all duration-300">
@@ -710,21 +951,23 @@ export default function Home() {
           
           <div className="relative text-center">
             {/* Birds container positioned precisely for the About Me heading */}
-            <div className="birds-container" ref={birdsRef}>
+            <div className="birds-container" ref={birdsRef} style={{ zIndex: 2 }}>
               <div className="bird bird-1"></div>
               <div className="bird bird-2"></div>
               <div className="bird bird-3"></div>
             </div>
             <h2 ref={aboutRef} className="text-3xl font-bold text-blue-500 inline-block opacity-0 relative z-10 mb-11">About Me</h2>
           </div>
-          <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto relative" style={{ zIndex: 2 }}>
             I'm a physics major who graduated from Texas Christian University with a B.S in Physics in May 2025. 
-            I've been actively involved in a variety of projects, including 
+            I've been actively involved in a variety of project, including computationl, solid state, and atomic physics. 
+
+            Currently I am working on  
             
             
-             developer with a passion for learning and problem-solving. Proficient in various programming languages and frameworks, I strive to build efficient and scalable solutions. Currently, I'm [add your current role or status, e.g., studying at XYZ University or working at ABC Company].
+             developer with a passion for learning and problem-solving. Proficient in various programming languages and frameworks, I strive to build efficient and scalable solutions. Currently, I'm [add your current role or status, e.g., studying at XYZ University
           </p>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 relative" style={{ zIndex: 2 }}>
             <div className="text-center">
               <h3 className="text-xl font-semibold text-white">Skills</h3>
               <ul className="mt-2 text-gray-400">
@@ -747,8 +990,11 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-16 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="projects" className="py-16 bg-gray-900 relative">
+        {/* Gradient overlay for smooth transition from previous section */}
+        <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-gray-900 to-gray-900 opacity-95"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 ref={projectsRef} className="text-3xl font-bold text-blue-600 text-center opacity-0 mb-16">Projects</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div 
@@ -774,11 +1020,17 @@ export default function Home() {
             </div>
           </div>
         </div>
+        
+        {/* Gradient overlay for smooth transition to next section */}
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-gray-900 opacity-95" style={{ zIndex: 1 }}></div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="py-16 bg-black relative">
+        {/* Gradient overlay for smooth transition from previous section */}
+        <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-black to-black opacity-95"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 ref={contactRef} className="text-3xl font-bold text-white text-center opacity-0">Contact Me</h2>
           <form onSubmit={handleSubmit} className="mt-8 max-w-lg mx-auto">
             <div className="mb-4">
@@ -828,6 +1080,7 @@ export default function Home() {
       <footer className="bg-gray-900 text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p>© {new Date().getFullYear()} Devansh KM. All rights reserved.</p>
+          
          
         </div>
       </footer>

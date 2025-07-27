@@ -5,7 +5,7 @@ const nextConfig = {
   reactStrictMode: false, // Set to false to avoid extra renders
   images: {
     domains: ['localhost'],
-    formats: ['image/webp', 'image/avif', 'image/jpeg', 'image/png'],
+    formats: ['image/webp', 'image/avif'],
     unoptimized: true // Set to true to prevent image optimization issues
   },
   // Ensure consistent CSS output
