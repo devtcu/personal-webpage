@@ -1,25 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  reactStrictMode: false,
   swcMinify: true,
-  reactStrictMode: false, // Set to false to avoid extra renders
   images: {
     domains: ['localhost'],
-    formats: ['image/webp', 'image/avif'],
-    unoptimized: true // Set to true to prevent image optimization issues
+    formats: ['image/webp', 'image/avif']
   },
-  // Ensure consistent CSS output
-  output: 'standalone',
-  // Fix asset loading paths
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/' : '',
-  basePath: '',
-  // Fix CSS optimizations
-  compiler: {
-    // Remove unused CSS in production
-    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false
-  },
-  // Configure trailing slashes
-  trailingSlash: false,
+  output: 'standalone'
 };
 
 module.exports = nextConfig;
