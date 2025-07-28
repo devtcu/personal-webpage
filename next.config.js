@@ -20,6 +20,7 @@ const nextConfig = {
   env: {
     REPO_NAME: repoName,
     IS_PRODUCTION: isProduction,
+    NEXT_PUBLIC_BASE_PATH: isProduction ? `/${repoName}` : '',
   },
   // Configure webpack to handle asset URLs correctly
   webpack: (config) => {

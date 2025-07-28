@@ -12,7 +12,8 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build",
-    "deploy": "touch out/.nojekyll && git add out/ && git commit -m \"Deploy to GitHub Pages\" && git subtree push --prefix out origin gh-pages"
+    "deploy": "touch out/.nojekyll && git add out/ && git commit -m \"Deploy to GitHub Pages\" && git subtree push --prefix out origin gh-pages",
+    "deploy:cache-bust": "./deploy-with-cache-bust.sh"
   },
   "dependencies": {
     "autoprefixer": "^10.4.14",

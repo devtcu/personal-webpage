@@ -1009,7 +1009,9 @@ export default function Home() {
           <h2 ref={projectsRef} className="text-3xl font-bold text-blue-600 text-center opacity-0 mb-16">Projects</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <a 
-              href="#project-tda"
+              href="https://github.com/devtcu/Topological-Data-Analysis"
+              target='_blank'
+              rel="noopener noreferrer"
               ref={el => projectCardsRef.current[0] = el}
               className="bg-white p-6 rounded-lg shadow-md opacity-0 transform hover:translate-y-[-5px] transition-all duration-300 block hover:bg-black group">
               <h3 className="text-xl font-semibold text-gray-900 group-hover:text-white transition-colors duration-300">Topological Data Analysis</h3>
@@ -1025,7 +1027,9 @@ export default function Home() {
               <p className="mt-2 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">A brief description of your project, technologies used, and its impact.</p>
             </a>
             <a 
-              href="#project-pandemic"
+              href="https://github.com/devtcu/Pandemic-Simulation"
+              target='_blank'
+              rel="noopener noreferrer"
               ref={el => projectCardsRef.current[2] = el}
               className="bg-white p-6 rounded-lg shadow-md opacity-0 transform hover:translate-y-[-5px] transition-all duration-300 block hover:bg-black group">
               <h3 className="text-xl font-semibold text-gray-900 group-hover:text-white transition-colors duration-300">Pandemic Simulation</h3>
