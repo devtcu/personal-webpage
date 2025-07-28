@@ -11,6 +11,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`bg-black ${jetbrainsMono.variable}`}>
       <head>
         {/* Preload critical resources */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" href="/parallax/star.gif" as="image" />
         <link rel="preload" href="/parallax/bird.webp" as="image" />
         <link rel="preload" href="/parallax/wave1.jpg" as="image" />
