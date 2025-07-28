@@ -520,6 +520,16 @@ export default function Home() {
       transform: translateY(0) !important;
     }
     
+    /* Project card hover effect */
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
     .section-fade-in {
       opacity: 0;
       transition: opacity 1.2s ease-out;
@@ -847,7 +857,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-12">
           <div className="relative mx-auto" style={{ width: '270px', height: '270px' }}>
             <img 
-              src="./last.jpg" 
+              src="./profile-1753671946.jpg" 
               alt='Devansh' 
               className='profile-image mx-auto rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 transition-transform duration-300'
               style={{ width: '100%', height: '100%' }}
@@ -889,7 +899,7 @@ export default function Home() {
                   .typeString("Number guy")
                   .pauseFor(800)
                   .deleteAll()
-                  .typeString("AND...Human")
+                  .typeString("Human")
                   .pauseFor(800)
                   .deleteAll()
                   .start();
@@ -935,14 +945,14 @@ export default function Home() {
                 <path fillRule="evenodd" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" clipRule="evenodd"></path>
               </svg>
             </a>
-            <a href="#" className="social-icon text-gray-400 hover:text-green-400 transition-all duration-300">
+            <a href="/files/devansh_cv.pdf" download target="_blank" rel="noopener noreferrer" className="social-icon text-gray-400 hover:text-green-400 transition-all duration-300">
               <span className="sr-only">Resume/CV</span>
               <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8 7V5c0-1.1.9-2 2-2h4a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h4zm2 0h4V5h-4v2zm-1 4v2h6v-2H9zm0 4v2h6v-2H9z"></path>
               </svg>
             </a>
             {/* Email link */}
-            <a href="mailto:your.email@example.com" className="social-icon text-gray-400 hover:text-red-400 transition-all duration-300">
+            <a href="mailto:d.kalluholematham@tcu.edu" className="social-icon text-gray-400 hover:text-red-400 transition-all duration-300">
               <span className="sr-only">Email</span>
               <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
@@ -998,27 +1008,30 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 ref={projectsRef} className="text-3xl font-bold text-blue-600 text-center opacity-0 mb-16">Projects</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div 
+            <a 
+              href="#project-tda"
               ref={el => projectCardsRef.current[0] = el}
-              className="bg-white p-6 rounded-lg shadow-md opacity-0 transform translate-y-4 transition-all duration-500">
-              <h3 className="text-xl font-semibold text-gray-900">Topological Data Analysis</h3>
-              <p className="mt-2 text-gray-600">Using persistence homology to evaluate data</p>
-              <a href="#" className="mt-4 inline-block text-blue-600 hover:underline">View Project</a>
-            </div>
-            <div 
+              className="bg-white p-6 rounded-lg shadow-md opacity-0 transform hover:translate-y-[-5px] transition-all duration-300 block hover:bg-black group">
+              <h3 className="text-xl font-semibold text-gray-900 group-hover:text-white transition-colors duration-300">Topological Data Analysis</h3>
+              <p className="mt-2 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">Using persistence homology to evaluate data</p>
+            </a>
+            <a 
+              href="https://abm-sigma.vercel.app"
+              target='_blank'
+              rel="noopener noreferrer"
               ref={el => projectCardsRef.current[1] = el}
-              className="bg-white p-6 rounded-lg shadow-md opacity-0 transform translate-y-4 transition-all duration-500">
-              <h3 className="text-xl font-semibold text-gray-900">Agent-Based Model</h3>
-              <p className="mt-2 text-gray-600">A brief description of your project, technologies used, and its impact.</p>
-              <a href="#" className="mt-4 inline-block text-blue-600 hover:underline">View Project</a>
-            </div>
-            <div 
+              className="bg-white p-6 rounded-lg shadow-md opacity-0 transform hover:translate-y-[-5px] transition-all duration-300 block hover:bg-black group">
+              <h3 className="text-xl font-semibold text-gray-900 group-hover:text-white transition-colors duration-300">Agent-Based Model</h3>
+              <p className="mt-2 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">A brief description of your project, technologies used, and its impact.</p>
+            </a>
+            <a 
+              href="#project-pandemic"
               ref={el => projectCardsRef.current[2] = el}
-              className="bg-white p-6 rounded-lg shadow-md opacity-0 transform translate-y-4 transition-all duration-500">
-              <h3 className="text-xl font-semibold text-gray-900">Pandemic Simulation</h3>
-              <p className="mt-2 text-gray-600">A brief description of your project, technologies used, and its impact.</p>
-              <a href="#" className="mt-4 inline-block text-blue-600 hover:underline">View Project</a>
-            </div>
+              className="bg-white p-6 rounded-lg shadow-md opacity-0 transform hover:translate-y-[-5px] transition-all duration-300 block hover:bg-black group">
+              <h3 className="text-xl font-semibold text-gray-900 group-hover:text-white transition-colors duration-300">Pandemic Simulation</h3>
+              <p className="mt-2 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">A brief description of your project, technologies used, and its impact.</p>
+            </a>
+            
           </div>
         </div>
         
