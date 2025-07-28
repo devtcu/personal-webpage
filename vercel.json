@@ -2,7 +2,7 @@
   "framework": "nextjs",
   "headers": [
     {
-      "source": "/parallax/:path*",
+      "source": "/parallax/:file*",
       "headers": [
         {
           "key": "Cache-Control",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "source": "/_next/static/:path*",
+      "source": "/_next/image(.*)",
       "headers": [
         {
           "key": "Cache-Control",
