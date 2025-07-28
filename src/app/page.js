@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import Typewriter from 'typewriter-effect';
+import { getAssetPath } from '../utils/assetHelpers';
 
 // Helper functions for browser detection and environment
 const isBrowser = () => typeof window !== 'undefined';
@@ -576,7 +577,7 @@ export default function Home() {
   }
 
   .wave-bg {
-    background: url('/parallax/wave1.jpg') repeat-x;
+    background: url('./parallax/wave1.jpg') repeat-x;
     background-size: cover;
     background-position: center;
     background-color: rgba(17, 24, 39, 0.9); /* Fallback if image doesn't load */
@@ -632,7 +633,7 @@ export default function Home() {
     position: absolute;
     width: 120px;
     height: 100px;
-    background: url('/parallax/bird.webp') no-repeat center center;
+    background: url('./parallax/bird.webp') no-repeat center center;
     background-size: contain;
     background-color: transparent; /* Ensure transparent background */
     opacity: 0;
@@ -682,7 +683,7 @@ export default function Home() {
     position: relative;
     width: 1200px; /* Increased from 800px to 1200px for a bigger star */
     height: 1200px; /* Increased from 800px to 1200px for a bigger star */
-    background: url('/parallax/star.gif') no-repeat center center;
+    background: url('./parallax/star.gif') no-repeat center center;
     background-size: contain;
     opacity: 0.3; /* Much fainter opacity */
     filter: brightness(1.5) contrast(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
@@ -846,7 +847,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-12">
           <div className="relative mx-auto" style={{ width: '270px', height: '270px' }}>
             <img 
-              src="/last.jpg" 
+              src="./last.jpg" 
               alt='Devansh' 
               className='profile-image mx-auto rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 transition-transform duration-300'
               style={{ width: '100%', height: '100%' }}
