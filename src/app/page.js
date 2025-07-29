@@ -22,7 +22,6 @@ const safeDomOperation = (callback) => {
 };
 
 export default function Home() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const aboutRef = useRef(null);
   const projectsRef = useRef(null);
   const contactRef = useRef(null);
@@ -484,15 +483,7 @@ export default function Home() {
     };
   }, []);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Form submitted! (This is a demo, no real submission occurs.)');
-    setFormData({ name: '', email: '', message: '' });
-  };
+  // Contact functionality now uses direct mailto link
 
   // Animation classes
   const animationStyles = `
@@ -893,13 +884,16 @@ export default function Home() {
                 typewriter
                   .changeDelay(40)
                   .pauseFor(2000) // Wait for the name to finish typing
-                  .typeString("Physicist")
+                  .typeString("Physics enthusiast")
                   .pauseFor(800)
                   .deleteAll()
                   .typeString("Number guy")
                   .pauseFor(800)
                   .deleteAll()
                   .typeString("Human")
+                  .pauseFor(800)
+                  .deleteAll()
+                  .typeString(":)")
                   .pauseFor(800)
                   .deleteAll()
                   .start();
@@ -945,17 +939,10 @@ export default function Home() {
                 <path fillRule="evenodd" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" clipRule="evenodd"></path>
               </svg>
             </a>
-            <a href="/files/devansh_cv.pdf" download target="_blank" rel="noopener noreferrer" className="social-icon text-gray-400 hover:text-green-400 transition-all duration-300">
+            <a href="/files/finCV.pdf" download target="_blank" rel="noopener noreferrer" className="social-icon text-gray-400 hover:text-green-400 transition-all duration-300">
               <span className="sr-only">Resume/CV</span>
               <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8 7V5c0-1.1.9-2 2-2h4a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h4zm2 0h4V5h-4v2zm-1 4v2h6v-2H9zm0 4v2h6v-2H9z"></path>
-              </svg>
-            </a>
-            {/* Email link */}
-            <a href="mailto:d.kalluholematham@tcu.edu" className="social-icon text-gray-400 hover:text-red-400 transition-all duration-300">
-              <span className="sr-only">Email</span>
-              <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+                <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM16 18H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
               </svg>
             </a>
           </div>
@@ -970,14 +957,22 @@ export default function Home() {
             <h2 ref={aboutRef} className="text-3xl font-bold text-blue-500 inline-block opacity-0 relative z-10 mb-11">About Me</h2>
           </div>
           <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto relative" style={{ zIndex: 2 }}>
-            I'm a physics major who graduated from Texas Christian University with a B.S in Physics in May 2025. 
+            &nbsp;&nbsp;&nbsp;&nbsp;I'm a physics major who graduated from Texas Christian University with a B.S in Physics in May 2025. 
             I've been actively involved in a variety of project, including computationl, solid state, and atomic physics. 
-
-            Currently I am working on  
-            
-            
-             developer with a passion for learning and problem-solving. Proficient in various programming languages and frameworks, I strive to build efficient and scalable solutions. Currently, I'm [add your current role or status, e.g., studying at XYZ University
+             <br /><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;Currently, I'm working on researching and developing a computational framework to quantify
+            spatial heterogeneity in syncytial cells. By leveraging Agent-Based Modelling, I simulate cell-cell 
+            fusion dynamics, apply topoligcal data anlysis techniques to compute alpha shapes
+            and persistent homology features! You can find some of my work below.
+             <br /><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;My preveious research endeavors also include working as an undergraduate research assistant at Texas Christian University,
+            where I studied surface properties of nanocrystalline oxides through spectroscopy, while also engineering UHV components
+            to enable cathodoluminescence imaging. I have presented my research at various APS conferences
+            around Texas and won multiple best presenter awards.  
+             <br /><br />
           </p>
+          
+          {/* Commenting out skills, experience, and education section so you can keep it for later
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 relative" style={{ zIndex: 2 }}>
             <div className="text-center">
               <h3 className="text-xl font-semibold text-white">Skills</h3>
@@ -997,6 +992,7 @@ export default function Home() {
               <p className="mt-2 text-gray-400">B.S. in Physics, Math, Texas Christian University</p>
             </div>
           </div>
+          */}
         </div>
       </section>
 
@@ -1024,7 +1020,7 @@ export default function Home() {
               ref={el => projectCardsRef.current[1] = el}
               className="bg-white p-6 rounded-lg shadow-md opacity-0 transform hover:translate-y-[-5px] transition-all duration-300 block hover:bg-black group">
               <h3 className="text-xl font-semibold text-gray-900 group-hover:text-white transition-colors duration-300">Agent-Based Model</h3>
-              <p className="mt-2 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">A brief description of your project, technologies used, and its impact.</p>
+              <p className="mt-2 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">Web-based simulation of cell-cell fusion, utilising Flask for backend and allowing users to adjust parameters.</p>
             </a>
             <a 
               href="https://github.com/devtcu/Pandemic-Simulation"
@@ -1033,7 +1029,7 @@ export default function Home() {
               ref={el => projectCardsRef.current[2] = el}
               className="bg-white p-6 rounded-lg shadow-md opacity-0 transform hover:translate-y-[-5px] transition-all duration-300 block hover:bg-black group">
               <h3 className="text-xl font-semibold text-gray-900 group-hover:text-white transition-colors duration-300">Pandemic Simulation</h3>
-              <p className="mt-2 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">A brief description of your project, technologies used, and its impact.</p>
+              <p className="mt-2 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">Tuneable Python script that uses physical perturbation to model human movement and track virus spread in a pandemic.</p>
             </a>
             
           </div>
@@ -1050,47 +1046,15 @@ export default function Home() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 ref={contactRef} className="text-3xl font-bold text-white text-center opacity-0">Contact Me</h2>
-          <form onSubmit={handleSubmit} className="mt-8 max-w-lg mx-auto">
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-white font-medium">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email " className="block text-white font-medium">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="message" className="block text-white font-medium">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                className="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
-                rows="4"
-                required
-              ></textarea>
-            </div>
-            <button type="submit" className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700">
-              Send Message
-            </button>
-          </form>
+          <div className="mt-8 flex flex-col items-center justify-center">
+            <a href="mailto:d.kalluholematham@tcu.edu" className="social-icon text-gray-400 hover:text-red-400 transition-all duration-300 transform hover:scale-110 p-2 text-center">
+              <span className="sr-only">Email</span>
+              <svg className="h-20 w-20 mx-auto" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+              </svg>
+              <p className="text-center text-gray-400 mt-3 font-medium">d.kalluholematham@tcu.edu</p>
+            </a>
+          </div>
         </div>
       </section>
 

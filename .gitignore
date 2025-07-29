@@ -51,3 +51,4 @@ postcss.config.mjs
 .vscode/
 .idea/
 *.swp
+.env.local
