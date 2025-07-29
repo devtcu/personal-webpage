@@ -32,6 +32,7 @@
     "eslint": "^8",
     "eslint-config-next": "13.4.19",
     "postcss": "^8.4.27",
+    "svg-to-ico": "^1.0.17",
     "tailwindcss": "^3.3.3",
     "typescript": "^5"
   }
