@@ -10,23 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js ⚙️
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
+          # Temporarily disable cache to bypass the 400 error
+          # cache: 'npm'
 
       - name: Install and Build 🔧
         run: |
-          npm ci
-          npm run build
+          npm clean-install --no-fund --no-audit --prefer-offline
+          npm run export
+          touch out/.nojekyll
         env:
           NODE_ENV: production
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
           branch: gh-pages
           folder: out
