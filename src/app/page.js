@@ -1013,7 +1013,7 @@ export default function Home() {
             </a>
             <a 
               href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/files/CV.pdf`} 
-              download="devansh_cv.pdf" 
+              download 
               target="_blank" 
               rel="noopener noreferrer" 
               className="social-icon text-gray-400 hover:text-green-400 transition-all duration-300">
