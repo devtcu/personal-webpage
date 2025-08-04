@@ -10,7 +10,7 @@ const isBrowser = () => typeof window !== 'undefined';
 const isProduction = process.env.NODE_ENV === 'production';
 const safeDomOperation = (callback) => {
   if (isBrowser()) {
-    // a delaye execution to ensure DOM is fully loaded
+    // a delay execution to ensure DOM is fully loaded
     setTimeout(() => {
       try {
         callback();

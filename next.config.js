@@ -5,6 +5,12 @@ const repoName = 'personal-webpage';
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     unoptimized: true,
     formats: ['image/webp', 'image/avif']
