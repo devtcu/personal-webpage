@@ -5,12 +5,12 @@ import { useState, useEffect, useRef } from 'react';
 import Typewriter from 'typewriter-effect';
 import { getAssetPath } from '../utils/assetHelpers';
 
-// Helper functions for browser detection and environment
+// helper functions for browser detection and environment...
 const isBrowser = () => typeof window !== 'undefined';
 const isProduction = process.env.NODE_ENV === 'production';
 const safeDomOperation = (callback) => {
   if (isBrowser()) {
-    // Delay execution to ensure DOM is fully loaded
+    // a delaye execution to ensure DOM is fully loaded
     setTimeout(() => {
       try {
         callback();
@@ -90,7 +90,7 @@ export default function Home() {
     };
   }, []);
 
-  // Add parallax effect for Japanese wave background
+  // parallax effect for wave background
   useEffect(() => {
     // Skip on server-side
     if (!isBrowser()) return;
@@ -128,7 +128,7 @@ export default function Home() {
     };
   }, []);
   
-  // Add horizontal bird movement across About Me title - simplified approach
+  // horizontal bird movement across About Me title - simplified approach
   useEffect(() => {
     // Skip on server-side
     if (!isBrowser()) return;
@@ -590,9 +590,6 @@ export default function Home() {
     top: 0;
     transform: translateX(0); /* Ensure initial position is set for animation */
     will-change: transform; /* Hint to browser for better performance */
-    /* Add gradient fade at bottom edge - more gradual fade */
-    mask-image: linear-gradient(to bottom, black 70%, rgba(0,0,0,0.8) 80%, rgba(0,0,0,0.6) 85%, rgba(0,0,0,0.2) 95%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 70%, rgba(0,0,0,0.8) 80%, rgba(0,0,0,0.6) 85%, rgba(0,0,0,0.2) 95%, transparent 100%);
   }
 
   /* Ensure profile image and text are above the waves */
@@ -682,13 +679,90 @@ export default function Home() {
   
   .giant-star {
     position: relative;
-    width: 1200px; /* Increased from 800px to 1200px for a bigger star */
-    height: 1200px; /* Increased from 800px to 1200px for a bigger star */
+    width: 1800px; /* Increased from 1200px to 1800px for much bigger coverage */
+    height: 1800px; /* Increased from 1200px to 1800px for much bigger coverage */
     background: url('./parallax/star.gif') no-repeat center center;
     background-size: contain;
     opacity: 0.3; /* Much fainter opacity */
     filter: brightness(1.5) contrast(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
     animation: giant-twinkle 15s infinite ease-in-out; /* Increased from 8s to 15s for slower pulsation */
+    
+    /* Ultra-aggressive edge blending - almost no solid center */
+    mask-image: radial-gradient(circle at center, 
+      black 15%, 
+      rgba(0,0,0,0.9) 20%, 
+      rgba(0,0,0,0.8) 25%, 
+      rgba(0,0,0,0.7) 30%, 
+      rgba(0,0,0,0.6) 35%, 
+      rgba(0,0,0,0.5) 40%, 
+      rgba(0,0,0,0.4) 45%, 
+      rgba(0,0,0,0.3) 50%, 
+      rgba(0,0,0,0.2) 60%, 
+      rgba(0,0,0,0.1) 70%, 
+      rgba(0,0,0,0.05) 80%, 
+      rgba(0,0,0,0.02) 90%, 
+      transparent 100%
+    );
+    -webkit-mask-image: radial-gradient(circle at center, 
+      black 15%, 
+      rgba(0,0,0,0.9) 20%, 
+      rgba(0,0,0,0.8) 25%, 
+      rgba(0,0,0,0.7) 30%, 
+      rgba(0,0,0,0.6) 35%, 
+      rgba(0,0,0,0.5) 40%, 
+      rgba(0,0,0,0.4) 45%, 
+      rgba(0,0,0,0.3) 50%, 
+      rgba(0,0,0,0.2) 60%, 
+      rgba(0,0,0,0.1) 70%, 
+      rgba(0,0,0,0.05) 80%, 
+      rgba(0,0,0,0.02) 90%, 
+      transparent 100%
+    );
+    
+    /* Multiple layered inset shadows for smoother edge blending */
+    box-shadow: 
+      inset 0 0 50px rgba(0,0,0,0.1),
+      inset 0 0 100px rgba(0,0,0,0.2),
+      inset 0 0 200px rgba(0,0,0,0.3),
+      inset 0 0 300px rgba(0,0,0,0.4),
+      inset 0 0 400px rgba(0,0,0,0.5),
+      0 0 30px rgba(255,255,255,0.03);
+  }
+  
+  /* Responsive scaling for different screen sizes */
+  @media (max-width: 1536px) {
+    .giant-star {
+      width: 1600px;
+      height: 1600px;
+    }
+  }
+  
+  @media (max-width: 1280px) {
+    .giant-star {
+      width: 1400px;
+      height: 1400px;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .giant-star {
+      width: 1200px;
+      height: 1200px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .giant-star {
+      width: 1000px;
+      height: 1000px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .giant-star {
+      width: 800px;
+      height: 800px;
+    }
   }
   
   @keyframes giant-twinkle {
@@ -703,6 +777,8 @@ export default function Home() {
     // Skip on server-side
     if (!isBrowser()) return;
     
+    // DISABLED - commenting out section fade animations that might be causing gradient effects
+    /*
     // Create refs for all sections that should fade in
     const aboutSection = document.getElementById('about');
     const projectsSection = document.getElementById('projects');
@@ -802,6 +878,7 @@ export default function Home() {
         contentObserver.unobserve(element);
       });
     };
+    */
   }, []);
 
   return (
@@ -841,7 +918,7 @@ export default function Home() {
           <div className="parallax-layer wave-bg"></div>
         </div>
         
-        {/* Gradient overlay for smooth transition to next section */}
+        {/* Gradient overlay for smooth transition to About Me section */}
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-900 to-transparent"></div>
         
         {/* Hero content */}
@@ -913,16 +990,11 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="pt-20 pb-28 bg-gray-900 relative overflow-hidden">
-        {/* Gradient overlay for smooth transition from previous section */}
-        <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-gray-900 to-gray-900 opacity-95"></div>
         {/* Single Giant Star - Centered and positioned at bottom layer with lowest z-index */}
         <div className="stars-container" ref={starsRef}>
           {/* One giant star using CSS background approach for better control */}
           <div className="giant-star"></div>
         </div>
-        
-        {/* Gradient overlay for smooth transition to next section */}
-        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-900 to-gray-900 opacity-95" style={{ zIndex: 1 }}></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative" style={{ zIndex: 2 }}>
           {/* Social Links Area */}
@@ -939,7 +1011,12 @@ export default function Home() {
                 <path fillRule="evenodd" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" clipRule="evenodd"></path>
               </svg>
             </a>
-            <a href="/files/finCV.pdf" download target="_blank" rel="noopener noreferrer" className="social-icon text-gray-400 hover:text-green-400 transition-all duration-300">
+            <a 
+              href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/files/CV.pdf`} 
+              download="devansh_cv.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="social-icon text-gray-400 hover:text-green-400 transition-all duration-300">
               <span className="sr-only">Resume/CV</span>
               <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM16 18H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
@@ -958,21 +1035,21 @@ export default function Home() {
           </div>
           <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto relative" style={{ zIndex: 2 }}>
             &nbsp;&nbsp;&nbsp;&nbsp;I'm a physics major who graduated from Texas Christian University with a B.S in Physics in May 2025. 
-            I've been actively involved in a variety of project, including computationl, solid state, and atomic physics. 
+            I've been actively involved in a variety of project, including computational, solid state, and atomic physics. 
              <br /><br />
             &nbsp;&nbsp;&nbsp;&nbsp;Currently, I'm working on researching and developing a computational framework to quantify
             spatial heterogeneity in syncytial cells. By leveraging Agent-Based Modelling, I simulate cell-cell 
-            fusion dynamics, apply topoligcal data anlysis techniques to compute alpha shapes
+            fusion dynamics, and apply topoligcal data analysis techniques to compute alpha shapes
             and persistent homology features! You can find some of my work below.
              <br /><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;My preveious research endeavors also include working as an undergraduate research assistant at Texas Christian University,
+            &nbsp;&nbsp;&nbsp;&nbsp;My previous research endeavors include working as an undergraduate research assistant at Texas Christian University,
             where I studied surface properties of nanocrystalline oxides through spectroscopy, while also engineering UHV components
             to enable cathodoluminescence imaging. I have presented my research at various APS conferences
-            around Texas and won multiple best presenter awards.  
+            around Texas and won multiple best presenter awards.   
              <br /><br />
           </p>
           
-          {/* Commenting out skills, experience, and education section so you can keep it for later
+          {/* Commenting out skills, experience, and education section so we can use it for later
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 relative" style={{ zIndex: 2 }}>
             <div className="text-center">
               <h3 className="text-xl font-semibold text-white">Skills</h3>
@@ -998,9 +1075,6 @@ export default function Home() {
 
       {/* Projects Section */}
       <section id="projects" className="py-16 bg-gray-900 relative">
-        {/* Gradient overlay for smooth transition from previous section */}
-        <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-gray-900 to-gray-900 opacity-95"></div>
-        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 ref={projectsRef} className="text-3xl font-bold text-blue-600 text-center opacity-0 mb-16">Projects</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1034,9 +1108,6 @@ export default function Home() {
             
           </div>
         </div>
-        
-        {/* Gradient overlay for smooth transition to next section */}
-        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-gray-900 opacity-95" style={{ zIndex: 1 }}></div>
       </section>
 
       {/* Contact Section */}

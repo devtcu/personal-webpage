@@ -2,6 +2,23 @@
   "framework": "nextjs",
   "headers": [
     {
+      "source": "/files/finCV.pdf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=devansh_cv.pdf"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
       "source": "/parallax/:file*",
       "headers": [
         {

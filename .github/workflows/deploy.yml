@@ -24,6 +24,8 @@ jobs:
           npm clean-install --no-fund --no-audit --prefer-offline
           npm run export
           touch out/.nojekyll
+          cp public/_headers out/
+          cp public/files/finCV.pdf out/files/finCV.pdf
         env:
           NODE_ENV: production
 
