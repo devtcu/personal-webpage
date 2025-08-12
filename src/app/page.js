@@ -487,6 +487,10 @@ export default function Home() {
 
   // Animation classes
   const animationStyles = `
+    html, body {
+      background: #000 !important;
+    }
+    
     @keyframes slideIn {
       from { transform: translateX(-50px); opacity: 0; }
       to { transform: translateX(0); opacity: 1; }
@@ -777,108 +781,7 @@ export default function Home() {
     // Skip on server-side
     if (!isBrowser()) return;
     
-    // DISABLED - commenting out section fade animations that might be causing gradient effects
-    /*
-    // Create refs for all sections that should fade in
-    const aboutSection = document.getElementById('about');
-    const projectsSection = document.getElementById('projects');
-    const contactSection = document.getElementById('contact');
     
-    // Add the initial class to make sections start transparent
-    [aboutSection, projectsSection, contactSection].forEach(section => {
-      if (section) {
-        section.classList.add('section-fade-in');
-      }
-    });
-
-    // Find paragraph elements and other content to animate
-    const paragraphs = document.querySelectorAll('p:not(.animate-excluded)');
-    const contentGroups = document.querySelectorAll('.mt-8, .grid, form');
-    
-    // Add fade-in class to paragraphs and content groups
-    [...paragraphs, ...contentGroups].forEach(element => {
-      element.classList.add('content-fade-in');
-    });
-
-    // Options for the intersection observer
-    const fadeOptions = {
-      root: null, // Use the viewport
-      rootMargin: '-5% 0px', // Trigger when 5% of the section is visible
-      threshold: 0.05 // Trigger when 5% of the target is visible
-    };
-    
-    // Create the observer for sections
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        // When section comes into view
-        if (entry.isIntersecting) {
-          // Get section ID to apply different timings for a more natural flow
-          const sectionId = entry.target.id;
-          let delay = 100;
-          
-          // Slightly different delays based on section
-          if (sectionId === 'about') delay = 100;
-          else if (sectionId === 'projects') delay = 150;
-          else if (sectionId === 'contact') delay = 200;
-          
-          // Apply the fade-in with the appropriate delay
-          setTimeout(() => {
-            entry.target.classList.add('section-visible');
-          }, delay);
-          
-          // Once we've shown the section, we can stop observing it
-          sectionObserver.unobserve(entry.target);
-        }
-      });
-    }, fadeOptions);
-    
-    // Create the observer for paragraphs with slightly different options
-    const contentOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1 // A bit higher threshold for content elements
-    };
-    
-    const contentObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          // Staggered delay for cascade effect
-          const staggerDelay = 150 + (index % 5) * 100; // Different delays for varied animation
-          
-          setTimeout(() => {
-            entry.target.classList.add('content-visible');
-          }, staggerDelay);
-          
-          contentObserver.unobserve(entry.target);
-        }
-      });
-    }, contentOptions);
-    
-    // Observe all sections
-    [aboutSection, projectsSection, contactSection].forEach(section => {
-      if (section) {
-        sectionObserver.observe(section);
-      }
-    });
-    
-    // Observe paragraphs and content groups
-    [...paragraphs, ...contentGroups].forEach(element => {
-      contentObserver.observe(element);
-    });
-
-    return () => {
-      // Clean up all observers
-      [aboutSection, projectsSection, contactSection].forEach(section => {
-        if (section) {
-          sectionObserver.unobserve(section);
-        }
-      });
-      
-      [...paragraphs, ...contentGroups].forEach(element => {
-        contentObserver.unobserve(element);
-      });
-    };
-    */
   }, []);
 
   return (
@@ -959,16 +862,13 @@ export default function Home() {
             <Typewriter
               onInit={(typewriter) => {
                 typewriter
-                  .changeDelay(40)
-                  .pauseFor(2000) // Wait for the name to finish typing
+                  .changeDelay(35)
+                  .pauseFor(1200) // Wait for the name to finish typing
                   .typeString("Physics enthusiast")
-                  .pauseFor(800)
+                  .pauseFor(500)
                   .deleteAll()
-                  .typeString("Number guy")
-                  .pauseFor(800)
-                  .deleteAll()
-                  .typeString("Human")
-                  .pauseFor(800)
+                  .typeString("Driven to create")
+                  .pauseFor(500)
                   .deleteAll()
                   .typeString(":)")
                   .pauseFor(800)
@@ -1034,19 +934,21 @@ export default function Home() {
             <h2 ref={aboutRef} className="text-3xl font-bold text-blue-500 inline-block opacity-0 relative z-10 mb-11">About Me</h2>
           </div>
           <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto relative" style={{ zIndex: 2 }}>
-            &nbsp;&nbsp;&nbsp;&nbsp;I'm a physics major who graduated from Texas Christian University with a B.S in Physics in May 2025. 
+            &nbsp;&nbsp;&nbsp;&nbsp;I'm a passionate researcher who graduated from Texas Christian University with a B.S in Physics in May 2025. 
             I've been actively involved in a variety of project, including computational, solid state, and atomic physics. 
              <br /><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;Currently, I'm working on researching and developing a computational framework to quantify
-            spatial heterogeneity in syncytial cells. By leveraging Agent-Based Modelling, I simulate cell-cell 
-            fusion dynamics, and apply topoligcal data analysis techniques to compute alpha shapes
+            &nbsp;&nbsp;&nbsp;&nbsp;Currently, I'm working on investigating and developing computational frameworks to quantify
+            spatial heterogeneity in syncytial cells. By leveraging Agent-Based Modelling--stochastic models built to simulate interactions between agents and their environments--I simulate cell-cell 
+            fusion dynamics, and apply topological data analysis techniques to compute alpha shapes
             and persistent homology features! You can find some of my work below.
              <br /><br />
             &nbsp;&nbsp;&nbsp;&nbsp;My previous research endeavors include working as an undergraduate research assistant at Texas Christian University,
             where I studied surface properties of nanocrystalline oxides through spectroscopy, while also engineering UHV components
             to enable cathodoluminescence imaging. I have presented my research at various APS conferences
-            around Texas and won multiple best presenter awards.   
+            around Texas and won multiple best presenter awards.    
              <br /><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;I'm actively searching for opportunities to apply and grow my skills. Fell free to reach out to my email or connect with me on Linkedin! 
+        
           </p>
           
           {/* Commenting out skills, experience, and education section so we can use it for later
@@ -1074,7 +976,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-16 bg-gray-900 relative">
+      <section id="projects" className="pb-16 bg-gray-900 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 ref={projectsRef} className="text-3xl font-bold text-blue-600 text-center opacity-0 mb-16">Projects</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1132,7 +1034,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p>© {new Date().getFullYear()} Devansh KM. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Devansh KM. All rights reserved</p>
           
          
         </div>
