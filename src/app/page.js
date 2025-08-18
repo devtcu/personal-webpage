@@ -977,9 +977,114 @@ export default function Home() {
 
       {/* Projects Section */}
       <section id="projects" className="pb-16 bg-gray-900 relative">
+      
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 ref={projectsRef} className="text-3xl font-bold text-blue-600 text-center opacity-0 mb-16">Projects</h2>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          {/* Featured Projects Subsection */}
+          <div className="mb-20">
+            <h3 className="text-2xl font-bold text-blue-400 mb-12 text-left">Featured</h3>
+            
+            {/* Featured Project 1 */}
+            <div className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="text-left">
+                <h4 className="text-xl font-semibold text-white mb-4">Agent-Based Modeling Framework</h4>
+                <p className="text-gray-300 mb-4 leading-relaxed">
+                  Data in the form of graphs provide invaluable insight into objects, their relationships, and their .
+                  However, this non-euclidean representation of nodes and edges (the lines that interconnect nodes) forces us to
+                  find . Graph Convolutional Networks 
+                  This comprehensive framework simulates cell-cell fusion dynamics using stochastic agent-based modeling. 
+                  The project combines computational biology with advanced data analysis techniques to understand 
+                  spatial heterogeneity in syncytial cells.
+                </p>
+                <p className="text-gray-300 mb-4 leading-relaxed">
+                  Built with Python and Flask, the web-based interface allows researchers to adjust simulation parameters 
+                  in real-time and visualize the results. The backend leverages NumPy and SciPy for efficient numerical 
+                  computations, while the frontend provides intuitive controls for parameter manipulation.
+                </p>
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  Key features include topological data analysis integration, persistent homology calculations, 
+                  and alpha shape computations that provide insights into cellular organization patterns.
+                </p>
+                  <a 
+                  href="https://github.com/devtcu/Topological-Data-Analysis" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800 transition-colors duration-300"
+                >
+                  View Source Code
+                  <svg className="ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                  </svg>
+                </a>
+              </div>
+              <div className="flex justify-center lg:justify-end">
+                <div className="bg-gray-800 p-4 rounded-lg shadow-lg max-w-md">
+                  <img 
+                    src="public/voronoi.jpg" 
+                    alt="Agent-Based Model Simulation Screenshot"
+                    className="w-full h-auto rounded border border-gray-600"
+                    onError={(e) => {
+                      e.target.style.backgroundColor = '#374151';
+                      e.target.alt = 'ABM Simulation Preview';
+                    }}
+                  />
+                  <p className="text-gray-400 text-sm mt-2 text-center">Interactive simulation interface</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Featured Project 2 */}
+            <div className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="lg:order-2 text-left">
+                <h4 className="text-xl font-semibold text-white mb-4">Topological Data Analysis Suite</h4>
+                <p className="text-gray-300 mb-4 leading-relaxed">
+                  A comprehensive toolkit for applying topological data analysis techniques to complex datasets. 
+                  This project focuses on persistent homology computations and their applications in understanding 
+                  structural patterns within high-dimensional data.
+                </p>
+                <p className="text-gray-300 mb-4 leading-relaxed">
+                  The suite includes implementations of various TDA algorithms, visualization tools for persistence 
+                  diagrams, and statistical methods for comparing topological features across different datasets. 
+                  Built primarily in Python with optimized C++ extensions for performance-critical operations.
+                </p>
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  Applications span from biological data analysis to material science, providing insights into 
+                  the underlying geometric and topological structure of complex systems.
+                </p>
+                <a 
+                  href="https://github.com/devtcu/Topological-Data-Analysis" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800 transition-colors duration-300"
+                >
+                  View Source Code
+                  <svg className="ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                  </svg>
+                </a>
+              </div>
+              <div className="lg:order-1 flex justify-center lg:justify-start">
+                <div className="bg-gray-800 p-4 rounded-lg shadow-lg max-w-md">
+                  <img 
+                    src="https://via.placeholder.com/400x300/374151/9CA3AF?text=TDA+Visualization" 
+                    alt="Topological Data Analysis Visualization"
+                    className="w-full h-auto rounded border border-gray-600"
+                    onError={(e) => {
+                      e.target.style.backgroundColor = '#374151';
+                      e.target.alt = 'TDA Visualization Preview';
+                    }}
+                  />
+                  <p className="text-gray-400 text-sm mt-2 text-center">Persistence diagram visualization</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Other Projects */}
+          <div>
+            <h3 className="text-2xl font-bold text-blue-400 mb-8 text-left">Other Projects</h3>
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <a 
               href="https://github.com/devtcu/Topological-Data-Analysis"
               target='_blank'
@@ -1008,6 +1113,7 @@ export default function Home() {
               <p className="mt-2 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">Tuneable Python script that uses physical perturbation to model human movement and track virus spread in a pandemic.</p>
             </a>
             
+            </div>
           </div>
         </div>
       </section>
