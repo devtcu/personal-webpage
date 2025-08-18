@@ -990,9 +990,8 @@ export default function Home() {
               <div className="text-left">
                 <h4 className="text-xl font-semibold text-white mb-4">Agent-Based Modeling Framework</h4>
                 <p className="text-gray-300 mb-4 leading-relaxed">
-                  Data in the form of graphs provide invaluable insight into objects, their relationships, and their .
-                  However, this non-euclidean representation of nodes and edges (the lines that interconnect nodes) forces us to
-                  find . <strong> Graph Convolutional Networks</strong> 
+                  Data represented in non-euclidean space in the form of graphs provide invaluable insight into objects, their relationships, and their .
+                  of nodes and edges (the lines that interconnect nodes).<strong> Graph Convolutional Networks</strong> 
                   This comprehensive framework simulates cell-cell fusion dynamics using stochastic agent-based modeling. 
                   The project combines computational biology with advanced data analysis techniques to understand 
                   spatial heterogeneity in syncytial cells.
@@ -1019,7 +1018,7 @@ export default function Home() {
                 </a>
               </div>
               <div className="flex justify-center lg:justify-end -mt-40">
-                <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl">
+                <div className="bg-gray-800 p-4 rounded-lg shadow-lg max-w-2xl">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-4">
                     <div className="text-center">
                       <img 
