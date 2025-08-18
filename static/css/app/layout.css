@@ -647,6 +647,9 @@ video {
 .-mt-40 {
   margin-top: -10rem;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 .block {
   display: block;
 }
@@ -889,6 +892,9 @@ video {
 }
 .p-9 {
   padding: 2.25rem;
+}
+.p-5 {
+  padding: 1.25rem;
 }
 .px-3 {
   padding-left: 0.75rem;
