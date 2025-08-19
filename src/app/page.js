@@ -990,20 +990,17 @@ export default function Home() {
               <div className="text-left">
                 <h4 className="text-xl font-semibold text-white mb-4">Agent-Based Modeling Framework</h4>
                 <p className="text-gray-300 mb-4 leading-relaxed">
-                  Data represented in non-euclidean space in the form of graphs provide invaluable insight into objects, their relationships, and their .
-                  of nodes and edges (the lines that interconnect nodes).<strong> Graph Convolutional Networks</strong> 
-                  This comprehensive framework simulates cell-cell fusion dynamics using stochastic agent-based modeling. 
-                  The project combines computational biology with advanced data analysis techniques to understand 
-                  spatial heterogeneity in syncytial cells.
+                  Data represented in <span className='text-blue-400'>non-euclidean space</span> in the form of graphs provide invaluable insight into objects and their relationships with neighbours.
+                  We start with an assay of unfused cells which forms our initial graph--these are our nodes. Subsequent edges (the lines that interconnect nodes) are formed from performing the delaunay triangulation
+                  on the assay.
+                
+                  
                 </p>
                 <p className="text-gray-300 mb-4 leading-relaxed">
-                  Built with Python and Flask, the web-based interface allows researchers to adjust simulation parameters 
-                  in real-time and visualize the results. The backend leverages NumPy and SciPy for efficient numerical 
-                  computations, while the frontend provides intuitive controls for parameter manipulation.
+                  <span className='text-blue-400'> Graph Convolutional Networks</span>  are used to
                 </p>
                 <p className="text-gray-300 mb-6 leading-relaxed">
-                  Key features include topological data analysis integration, persistent homology calculations, 
-                  and alpha shape computations that provide insights into cellular organization patterns.
+                  My work will continue to 
                 </p>
                   <a 
                   href="https://github.com/devtcu/Topological-Data-Analysis" 
