@@ -26,6 +26,7 @@ export default function Home() {
   const projectsRef = useRef(null);
   const contactRef = useRef(null);
   const projectCardsRef = useRef([]);
+  const featuredProjectRef = useRef(null);
   const parallaxRef = useRef(null);
   const birdsRef = useRef(null);
   const starsRef = useRef(null);
@@ -35,7 +36,7 @@ export default function Home() {
     if (!isBrowser()) return;
     
     // Animation for section headers
-    const sectionRefs = [aboutRef, projectsRef, contactRef];
+    const sectionRefs = [aboutRef, projectsRef, contactRef, featuredProjectRef];
     
     const observerOptions = {
       threshold: 0.1,
@@ -937,10 +938,8 @@ export default function Home() {
             &nbsp;&nbsp;&nbsp;&nbsp;I'm a passionate researcher who graduated from Texas Christian University with a B.S in Physics in May 2025. 
             I've been actively involved in a variety of project, including computational, solid state, and atomic physics. 
              <br /><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;Currently, I'm working on investigating and developing computational frameworks to quantify
-            spatial heterogeneity in syncytial cells. By leveraging Agent-Based Modelling--stochastic models built to simulate interactions between agents and their environments--I simulate cell-cell 
-            fusion dynamics, and apply topological data analysis techniques to compute alpha shapes
-            and persistent homology features! You can find some of my work below.
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            Currently, I work as a research associate, where I'm studying topological features detected by neural networks. I'm also developing a framework to parallelize the algorithms on NVIDIA GPU's using CUDA. You can find some of my work and updates below!
              <br /><br />
             &nbsp;&nbsp;&nbsp;&nbsp;My previous research endeavors include working as an undergraduate research assistant at Texas Christian University,
             where I studied surface properties of nanocrystalline oxides through spectroscopy, while also engineering UHV components
@@ -986,7 +985,7 @@ export default function Home() {
             <h3 className="text-2xl font-bold text-blue-400 mb-12 text-left">Featured</h3>
             
             {/* Featured Project 1 */}
-            <div className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div ref={featuredProjectRef} className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center opacity-0">
               <div className="text-left">
                 <h4 className="text-xl font-semibold text-white mb-4">Agent-Based Modeling Framework</h4>
                 <p className="text-gray-300 mb-4 leading-relaxed">
@@ -1000,9 +999,8 @@ export default function Home() {
                    offering a deeper understanding of spatial heterogeneity.
                 </p>
                 <p className="text-gray-300 mb-6 leading-relaxed">
-                  My work will continue to explore the integration of persistent homology and advanced GCN architectures to enhance the detection of spatial dynamics in biological systems. Future efforts will focus on validating these 
-                  models with Agent-Based Simulations, expanding to diverse datasets, and correlating topological features with disease states, aiming to contribute meaningful insights to 
-                  graph-based machine learning.
+                  My work will continue to explore the integration of persistent homology and advanced GCN architectures to enhance the detection of <span className='text-blue-400'n> spatial dynamics in biological systems</span>. Future efforts will focus on validating these 
+                  models with Agent-Based Simulations and expanding to diverse datasets, aiming to contribute meaningful insights to graph-based machine learning.
                 </p>
                   <a 
                   href="https://github.com/devtcu/Topological-Data-Analysis" 
@@ -1016,7 +1014,7 @@ export default function Home() {
                   </svg>
                 </a>
               </div>
-              <div className="flex justify-center lg:justify-end -mt-40">
+              <div className="flex justify-center lg:justify-end -mt-80"> {/*change position of container*/}
                 <div className="bg-gray-800 p-4 rounded-lg shadow-lg max-w-2xl">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-4">
                     <div className="text-center">
@@ -1049,7 +1047,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Featured Project 2 */}
+            {/* Featured Project 2 - Commented out for now
             <div className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="lg:order-2 text-left">
                 <h4 className="text-xl font-semibold text-white mb-4">Topological Data Analysis Suite</h4>
@@ -1094,9 +1092,9 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+            */}
 
-          {/* Other Projects */}
+          </div>
           <div>
             <h3 className="text-2xl font-bold text-blue-400 mb-8 text-left">Other Projects</h3>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
