@@ -997,10 +997,12 @@ export default function Home() {
                 <p className="text-gray-300 mb-4 leading-relaxed">
                   <span className='text-blue-400'> Graph Convolutional Networks</span> are used to analyze the topological properties of this graph, enabling the prediction of spatial
                    patterns such as syncytial-dominated or unfused-dominated regions. By leveraging semi-supervised learning on small subgraphs and higher-order neighbor aggregation, these networks uncover consistent structural features, 
-                   offering a deeper understanding of cellular heterogeneity and its biological implications.
+                   offering a deeper understanding of spatial heterogeneity.
                 </p>
                 <p className="text-gray-300 mb-6 leading-relaxed">
-                  My work will continue to 
+                  My work will continue to explore the integration of persistent homology and advanced GCN architectures to enhance the detection of spatial dynamics in biological systems. Future efforts will focus on validating these 
+                  models with Agent-Based Simulations, expanding to diverse datasets, and correlating topological features with disease states, aiming to contribute meaningful insights to 
+                  graph-based machine learning.
                 </p>
                   <a 
                   href="https://github.com/devtcu/Topological-Data-Analysis" 
