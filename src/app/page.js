@@ -987,7 +987,7 @@ export default function Home() {
             {/* Featured Project 1 */}
             <div ref={featuredProjectRef} className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center opacity-0">
               <div className="text-left">
-                <h4 className="text-xl font-semibold text-white mb-4">Agent-Based Modeling Framework</h4>
+                <h4 className="text-xl font-semibold text-white mb-4">Towards a Framework For Unsupervised Graph-Based Machine Learning</h4>
                 <p className="text-gray-300 mb-4 leading-relaxed">
                   Data represented in <span className='text-blue-400'>non-euclidean space</span> in the form of graphs provide invaluable insight into objects and their relationships with neighbours.
                   We start with an assay of unfused cells which forms our initial graph--the nuclei are our nodes. Subsequent edges are formed by implementing the delaunay triangulation algorithm
@@ -995,7 +995,8 @@ export default function Home() {
                 </p>
                 <p className="text-gray-300 mb-4 leading-relaxed">
                   <span className='text-blue-400'> Graph Convolutional Networks</span> are used to analyze the topological properties of this graph, enabling the prediction of spatial
-                   patterns such as syncytial-dominated or unfused-dominated regions. By leveraging semi-supervised learning on small subgraphs and higher-order neighbor aggregation, these networks uncover consistent structural features, 
+                   patterns such as syncytial-dominated or unfused-dominated regions. By leveraging semi/unsupervised learning on small subgraphs--given that our
+                   nodes caryy little to no labels--and higher-order neighbor aggregation, these networks aim to uncover consistent structural features, 
                    offering a deeper understanding of spatial heterogeneity.
                 </p>
                 <p className="text-gray-300 mb-6 leading-relaxed">
