@@ -939,14 +939,14 @@ export default function Home() {
             I've been actively involved in a variety of project, including computational, solid state, and atomic physics. 
              <br /><br />
             &nbsp;&nbsp;&nbsp;&nbsp;
-            Currently, I work as a research associate, where I'm studying topological features detected by neural networks. I'm also developing a framework to parallelize the algorithms on NVIDIA GPU's using CUDA. You can find some of my work and updates below!
+            Currently, I work as a research associate, where I studying topological features detected by neural networks. I'm developing a framework to parallelize the algorithms on NVIDIA GPU's using CUDA. You can find some of my work and updates below!
              <br /><br />
             &nbsp;&nbsp;&nbsp;&nbsp;My previous research endeavors include working as an undergraduate research assistant at Texas Christian University,
             where I studied surface properties of nanocrystalline oxides through spectroscopy, while also engineering UHV components
             to enable cathodoluminescence imaging. I have presented my research at various APS conferences
             around Texas and won multiple best presenter awards.    
              <br /><br />
-              &nbsp;&nbsp;&nbsp;&nbsp;I'm actively searching for opportunities to apply and grow my skills. Fell free to reach out to my email or connect with me on Linkedin! 
+              &nbsp;&nbsp;&nbsp;&nbsp;I'm actively searching for opportunities to apply and grow my skills. Feel free to reach out to my email or connect with me on Linkedin! 
         
           </p>
           
