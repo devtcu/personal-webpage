@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Star Test</title>
+  <style>
+    body {
+      background-color: #111827;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    .star-container {
+      margin: 30px auto;
+      width: 300px;
+      height: 200px;
+      border: 1px solid white;
+      position: relative;
+    }
+    .star {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+  <h1>Star GIF Test</h1>
+  
+  <div class="star-container">
+    <img src="/parallax/star.gif" class="star" alt="Star">
+  </div>
+  
+  <div>
+    <p>If you can see a star above, the image is loading correctly.</p>
+    <p>If not, there might be an issue with the image file or path.</p>
+  </div>
+</body>
+</html>
