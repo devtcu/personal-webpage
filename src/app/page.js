@@ -985,8 +985,8 @@ export default function Home() {
             <h3 className="text-2xl font-bold text-blue-400 mb-12 text-left">Featured</h3>
             
             {/* Featured Project 1 */}
-            <div ref={featuredProjectRef} className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center opacity-0">
-              <div className="text-left">
+            <div ref={featuredProjectRef} className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start opacity-0">
+              <div className="text-left lg:sticky lg:top-24">
                 <h4 className="text-xl font-semibold text-white mb-4">Towards a Framework For Unsupervised Graph-Based Machine Learning</h4>
                 <p className="text-gray-300 mb-4 leading-relaxed">
                   Data represented in <span className='text-blue-400'>non-euclidean space</span> in the form of graphs provide invaluable insight into objects and their relationships with neighbours.
@@ -996,7 +996,7 @@ export default function Home() {
                 <p className="text-gray-300 mb-4 leading-relaxed">
                   <span className='text-blue-400'> Graph Convolutional Networks</span> are used to analyze the topological properties of this graph, enabling the prediction of spatial
                    patterns such as syncytial-dominated or unfused-dominated regions. By leveraging semi/unsupervised learning on small subgraphs--given that our
-                   nodes caryy little to no labels--and higher-order neighbor aggregation, these networks aim to uncover consistent structural features, 
+                   nodes carry little to no labels--and higher-order neighbor aggregation, these networks aim to uncover consistent structural features, 
                    offering a deeper understanding of spatial heterogeneity.
                 </p>
                 <p className="text-gray-300 mb-6 leading-relaxed">
@@ -1015,7 +1015,7 @@ export default function Home() {
                   </svg>
                 </a>
               </div>
-              <div className="flex justify-center lg:justify-end -mt-80"> {/*change position of container*/}
+              <div className="flex justify-center lg:justify-end mt-35"> {/*change position of container*/}
                 <div className="bg-gray-800 p-4 rounded-lg shadow-lg max-w-2xl">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-4">
                     <div className="text-center">
@@ -1043,7 +1043,16 @@ export default function Home() {
                       <p className="text-gray-400 text-sm mt-2">Delaunay triangulation</p>
                     </div>
                   </div>
-                  <p className="text-gray-400 text-base text-center">Spatial analysis visualizations</p>
+                  {/* New line for contrastive.webp */}
+                  <div className="text-center mt-6 col-span-2">
+                    <img 
+                      src="./contrastive.webp" 
+                      alt="Contrastive Visualization"
+                      className="w-full h-auto rounded border border-gray-600"
+                    />
+                    <p className="text-gray-400 text-sm mt-2">Low-dimensional representation</p>
+                  </div>
+                  <p className="text-gray-400 text-base text-center col-span-2 mt-4"></p>
                 </div>
               </div>
             </div>
