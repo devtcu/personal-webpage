@@ -1064,11 +1064,11 @@ export default function Home() {
                   {/* New line for contrastive.webp */}
                   <div className="text-center mt-6 col-span-2">
                     <img 
-                      src="./contrastive.webp" 
+                      src="./GraphCL.png" 
                       alt="Contrastive Visualization"
                       className="w-full h-auto rounded border border-gray-600"
                     />
-                    <p className="text-gray-400 text-sm mt-2">Low-dimensional representation</p>
+                    <p className="text-gray-400 text-sm mt-2">Graph Contrastive Learning</p>
                   </div>
                   <p className="text-gray-400 text-base text-center col-span-2 mt-4"></p>
                 </div>
