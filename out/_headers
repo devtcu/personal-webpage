@@ -1,0 +1,6 @@
+/files/CV.pdf
+  Content-Type: application/pdf
+  Content-Disposition: attachment; filename=CV.pdf
+
+/files/*.pdf
+  Content-Type: application/pdf
