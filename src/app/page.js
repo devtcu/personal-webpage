@@ -1024,12 +1024,20 @@ export default function Home() {
                     const element = document.getElementById('agent-based-model');
                     if (element) {
                       element.scrollIntoView({ behavior: 'smooth' });
+                      // Force all child text elements to be white FIRST
+                      const textElements = element.querySelectorAll('h3, p');
+                      textElements.forEach(el => {
+                        el.style.setProperty('color', 'white', 'important');
+                      });
+                      element.style.setProperty('background-color', 'black', 'important');
+                      element.style.setProperty('color', 'white', 'important');
                       element.classList.add('animate-pulse');
-                      element.style.backgroundColor = 'black';
-                      element.style.color = 'white';
                       setTimeout(() => {
-                        element.style.backgroundColor = '';
-                        element.style.color = '';
+                        element.style.removeProperty('background-color');
+                        element.style.removeProperty('color');
+                        textElements.forEach(el => {
+                          el.style.removeProperty('color');
+                        });
                         element.classList.remove('animate-pulse');
                       }, 2000);
                     }
