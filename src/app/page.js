@@ -930,8 +930,6 @@ export default function Home() {
             
             <a 
               href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/files/CV.pdf`} 
-              download 
-              target="_blank" 
               rel="noopener noreferrer" 
               className="social-icon group flex flex-col items-center">
               <div className="text-gray-400 group-hover:text-green-400 transition-all duration-300">
