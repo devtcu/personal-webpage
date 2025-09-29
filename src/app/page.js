@@ -1024,7 +1024,6 @@ export default function Home() {
                     const element = document.getElementById('agent-based-model');
                     if (element) {
                       element.scrollIntoView({ behavior: 'smooth' });
-                      // Add blinking effect
                       element.classList.add('animate-pulse');
                       element.style.backgroundColor = 'black';
                       element.style.color = 'white';
