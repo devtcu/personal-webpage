@@ -1005,7 +1005,7 @@ export default function Home() {
             {/* Featured Project 1 */}
             <div ref={featuredProjectRef} className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start opacity-0">
               <div className="text-left lg:sticky lg:top-24">
-                <h4 className="text-xl font-semibold text-white mb-4">Towards a Framework For Unsupervised Graph-Based Machine Learning</h4>
+                <h4 className="text-xl font-semibold text-white mb-4">Towards a Framework For Self-Supervised Graph-Based Machine Learning</h4>
                 <p className="text-gray-300 mb-4 leading-relaxed">
                   Data represented in <span className='text-blue-400'>non-euclidean space</span> in the form of graphs provide invaluable insight into objects and their relationships with neighbours.
                   We start with an assay of unfused cells which forms our initial graph--the nuclei are our nodes. Subsequent edges are formed by implementing the delaunay triangulation algorithm
@@ -1013,13 +1013,28 @@ export default function Home() {
                 </p>
                 <p className="text-gray-300 mb-4 leading-relaxed">
                   <span className='text-blue-400'> Graph Convolutional Networks</span> are used to analyze the topological properties of this graph, enabling the prediction of spatial
-                   patterns such as syncytial-dominated or unfused-dominated regions. By leveraging semi/unsupervised learning on small subgraphs--given that our
-                   nodes carry little to no labels--and higher-order neighbor aggregation, these networks aim to uncover consistent structural features, 
+                   patterns such as syncytial-dominated or unfused-dominated regions. By leveraging self-supervised learning on small subgraphs--given that our
+                   nodes carry no labels--and higher-order neighbor aggregation, these networks aim to uncover consistent structural features, 
                    offering a deeper understanding of spatial heterogeneity.
                 </p>
                 <p className="text-gray-300 mb-6 leading-relaxed">
                   My work will continue to explore the integration of persistent homology and advanced GCN architectures to enhance the detection of <span className='text-blue-400'n> spatial dynamics in biological systems</span>. Future efforts will focus on validating these 
-                  models with Agent-Based Simulations and expanding to diverse datasets, aiming to contribute meaningful insights to graph-based machine learning.
+                  models with Agent-Based Simulations (you can find a simple simulation <a href="#agent-based-model" onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById('agent-based-model');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                      // Add blinking effect
+                      element.classList.add('animate-pulse');
+                      element.style.backgroundColor = 'black';
+                      element.style.color = 'white';
+                      setTimeout(() => {
+                        element.style.backgroundColor = '';
+                        element.style.color = '';
+                        element.classList.remove('animate-pulse');
+                      }, 2000);
+                    }
+                  }} className="text-blue-400 hover:text-blue-300 underline transition-colors duration-300 cursor-pointer">here</a>) and expanding to diverse datasets, aiming to contribute meaningful insights to graph-based machine learning.
                 </p>
                   <a 
                   href="https://github.com/devtcu/Topological-Data-Analysis" 
@@ -1136,6 +1151,7 @@ export default function Home() {
               <p className="mt-2 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">Using persistence homology to evaluate data</p>
             </a>
             <a 
+              id="agent-based-model"
               href="https://abm-sigma.vercel.app"
               target='_blank'
               rel="noopener noreferrer"
