@@ -31,6 +31,19 @@ export default function Home() {
   const birdsRef = useRef(null);
   const starsRef = useRef(null);
 
+  //force scroll to top on page load/refresh
+  useEffect(() => {
+    if (!isBrowser()) return;
+    
+    //goes all the way up imediatelyy
+    window.scrollTo(0, 0);
+    
+    //extrastuffz
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+  }, []);
+
   useEffect(() => {
     // Skip on server-side
     if (!isBrowser()) return;
