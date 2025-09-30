@@ -31,77 +31,89 @@ export default function Home() {
   const birdsRef = useRef(null);
   const starsRef = useRef(null);
 
-  //force scroll to top on page load/refresh
+  //bEFORE animations
   useEffect(() => {
     if (!isBrowser()) return;
     
-    //goes all the way up imediatelyy
-    window.scrollTo(0, 0);
-    
-    //extrastuffz
+    //letus disable scroll restoration and scroll immediately
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
+    
+    //immediate scroll
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'auto' // instant, no smooth scrolling
+    });
+    
+
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
   }, []);
 
   useEffect(() => {
-    // Skip on server-side
     if (!isBrowser()) return;
     
-    // Animation for section headers
-    const sectionRefs = [aboutRef, projectsRef, contactRef, featuredProjectRef];
-    
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-slide-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    
-    sectionRefs.forEach(ref => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
-    
-    // Animation for project cards
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('animate-fade-in');
-          }, index * 150); // Staggered delay
-          cardObserver.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    
-    projectCardsRef.current.forEach(card => {
-      if (card) {
-        cardObserver.observe(card);
-      }
-    });
-    
-    return () => {
+    const setupAnimations = () => {
+      const sectionRefs = [aboutRef, projectsRef, contactRef, featuredProjectRef];
+      
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-slide-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      
       sectionRefs.forEach(ref => {
         if (ref.current) {
-          observer.unobserve(ref.current);
+          observer.observe(ref.current);
         }
       });
       
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('animate-fade-in');
+            }, index * 150); // Staggered delay
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      
       projectCardsRef.current.forEach(card => {
         if (card) {
-          cardObserver.unobserve(card);
+          cardObserver.observe(card);
         }
       });
+      
+      return () => {
+        sectionRefs.forEach(ref => {
+          if (ref.current) {
+            observer.unobserve(ref.current);
+          }
+        });
+        
+        projectCardsRef.current.forEach(card => {
+          if (card) {
+            cardObserver.unobserve(card);
+          }
+        });
+      };
     };
+    
+    // delay a bit before setting up animations to avoid triggering during scroll-to-top
+    setTimeout(setupAnimations, 100);
+    
   }, []);
 
   // parallax effect for wave background
@@ -120,11 +132,11 @@ export default function Home() {
       const heroHeight = heroSection.offsetHeight;
       const headerHeight = document.querySelector('nav')?.offsetHeight || 0;
       
-      // Calculate how far we've scrolled within the section as a percentage
-      // We start calculating from when the section is at the top of the viewport
+      //how far we've scrolled within the section as a percentage
+      // start calculating from when the section is at the top of the viewport
       const scrollPercent = Math.min(1, scrollPosition / (heroHeight - headerHeight));
       
-      // Apply parallax effect to the wave background - horizontal movement
+      //pply parallax effect to the wave background - horizontal movement
       const waveBg = parallaxRef.current.querySelector('.wave-bg');
       
       if (waveBg) {
@@ -134,7 +146,6 @@ export default function Home() {
     };
     
     window.addEventListener('scroll', handleParallax);
-    // Run once on mount
     handleParallax();
     
     return () => {
@@ -1215,7 +1226,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p>© {new Date().getFullYear()} Devansh KM. All rights reserved</p>
+          <p>© {new Date().getFullYear()} Devansh KM </p>
+            <p> In the event of infringement, dragons will be dispatched.</p>
           
          
         </div>

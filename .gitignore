@@ -26,6 +26,9 @@
 ehthumbs.db
 Thumbs.db
 
+# development tools (optional for production)
+# dev-tools/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
