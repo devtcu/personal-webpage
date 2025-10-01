@@ -607,7 +607,7 @@ export default function Home() {
   }
 
   .wave-bg {
-    background: url('./parallax/wave1.jpg') repeat-x;
+    background: url('/parallax/wave1.jpg') repeat-x;
     background-size: cover;
     background-position: center;
     background-color: rgba(17, 24, 39, 0.9); /* Fallback if image doesn't load */
@@ -660,7 +660,7 @@ export default function Home() {
     position: absolute;
     width: 120px;
     height: 100px;
-    background: url('./parallax/bird.webp') no-repeat center center;
+    background: url('/parallax/bird.webp') no-repeat center center;
     background-size: contain;
     background-color: transparent; /* Ensure transparent background */
     opacity: 0;
@@ -710,7 +710,7 @@ export default function Home() {
     position: relative;
     width: 1800px; /* Increased from 1200px to 1800px for much bigger coverage */
     height: 1800px; /* Increased from 1200px to 1800px for much bigger coverage */
-    background: url('./parallax/star.gif') no-repeat center center;
+    background: url('/parallax/star.gif') no-repeat center center;
     background-size: contain;
     opacity: 0.3; /* Much fainter opacity */
     filter: brightness(1.5) contrast(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
@@ -830,7 +830,7 @@ export default function Home() {
               <h1 className="text-3xl font-bold text-gray-400">devansh.</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Link href="#home" className="text-gray-400 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</Link>
+              <Link href="/blog" className="text-gray-400 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Blog</Link>
               <Link href="#about" className="text-gray-400 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Myself</Link>
               <Link href="#projects" className="text-gray-400 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">My Work</Link>
               <Link href="#contact" className="text-gray-400 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Reach Me</Link>
@@ -853,7 +853,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-12">
           <div className="relative mx-auto" style={{ width: '270px', height: '270px' }}>
             <img 
-              src="./profile-1753671946.jpg" 
+              src="/profile-1753671946.jpg" 
               alt='Devansh' 
               className='profile-image mx-auto rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 transition-transform duration-300'
               style={{ width: '100%', height: '100%' }}
@@ -1082,7 +1082,7 @@ export default function Home() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-4">
                     <div className="text-center">
                       <img 
-                        src="./voronoi.jpg" 
+                        src="/voronoi.jpg" 
                         alt="Voronoi Diagram Visualization"
                         className="w-full h-auto rounded border border-gray-600"
                         onError={(e) => {
@@ -1094,7 +1094,7 @@ export default function Home() {
                     </div>
                     <div className="text-center">
                       <img 
-                        src="./delaunay.png" 
+                        src="/delaunay.png" 
                         alt="Delaunay Triangulation Visualization"
                         className="w-full h-auto rounded border border-gray-600"
                         onError={(e) => {
@@ -1108,7 +1108,7 @@ export default function Home() {
                   {/* New line for contrastive.webp */}
                   <div className="text-center mt-6 col-span-2">
                     <img 
-                      src="./GraphCL.png" 
+                      src="/GraphCL.png" 
                       alt="Contrastive Visualization"
                       className="w-full h-auto rounded border border-gray-600"
                     />
@@ -1171,7 +1171,7 @@ export default function Home() {
             <h3 className="text-2xl font-bold text-blue-400 mb-8 text-left">Other Projects</h3>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <a 
-              href="https://github.com/devtcu/Topological-Data-Analysis"
+              href="https://github.com/devtcu/Fusion"
               target='_blank'
               rel="noopener noreferrer"
               ref={el => projectCardsRef.current[0] = el}
