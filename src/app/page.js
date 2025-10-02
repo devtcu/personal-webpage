@@ -276,7 +276,7 @@ export default function Home() {
     const debugImg = new Image();
     debugImg.onload = () => console.log('Giant star image loaded successfully');
     debugImg.onerror = () => console.error('Failed to load giant star image');
-    debugImg.src = '/parallax/star.gif';
+    debugImg.src = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/parallax/star.gif`;
     
     // Ensure star is properly contained in the About section
     const setupStar = () => {
@@ -510,7 +510,8 @@ export default function Home() {
 
   // Contact functionality now uses direct mailto link
 
-  // Animation classes
+  // Animation classes with dynamic base path
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const animationStyles = `
     html, body {
       background: #000 !important;
@@ -607,7 +608,7 @@ export default function Home() {
   }
 
   .wave-bg {
-    background: url('/parallax/wave1.jpg') repeat-x;
+    background: url('${basePath}/parallax/wave1.jpg') repeat-x;
     background-size: cover;
     background-position: center;
     background-color: rgba(17, 24, 39, 0.9); /* Fallback if image doesn't load */
@@ -660,7 +661,7 @@ export default function Home() {
     position: absolute;
     width: 120px;
     height: 100px;
-    background: url('/parallax/bird.webp') no-repeat center center;
+    background: url('${basePath}/parallax/bird.webp') no-repeat center center;
     background-size: contain;
     background-color: transparent; /* Ensure transparent background */
     opacity: 0;
@@ -710,7 +711,7 @@ export default function Home() {
     position: relative;
     width: 1800px; /* Increased from 1200px to 1800px for much bigger coverage */
     height: 1800px; /* Increased from 1200px to 1800px for much bigger coverage */
-    background: url('/parallax/star.gif') no-repeat center center;
+    background: url('${basePath}/parallax/star.gif') no-repeat center center;
     background-size: contain;
     opacity: 0.3; /* Much fainter opacity */
     filter: brightness(1.5) contrast(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
@@ -853,7 +854,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-12">
           <div className="relative mx-auto" style={{ width: '270px', height: '270px' }}>
             <img 
-              src="/profile-1753671946.jpg" 
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/profile-1753671946.jpg`} 
               alt='Devansh' 
               className='profile-image mx-auto rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 transition-transform duration-300'
               style={{ width: '100%', height: '100%' }}
@@ -979,7 +980,7 @@ export default function Home() {
             I've been actively involved in a variety of project, including computational, solid state, and atomic physics. 
              <br /><br />
             &nbsp;&nbsp;&nbsp;&nbsp;
-            Currently, I work as a research associate, where I studying topological features detected by neural networks. I'm developing a framework to parallelize the algorithms on NVIDIA GPU's using CUDA. You can find some of my work and updates below!
+            Currently, I work as a research associate where I combine topology and Graph Neural Networks to simulate biological phenomena. I'm developing a framework to run agent-based models to run on NVIDIA GPU's using CUDA. You can find some of my work and updates below!
              <br /><br />
             &nbsp;&nbsp;&nbsp;&nbsp;My previous research endeavors include working as an undergraduate research assistant at Texas Christian University,
             where I studied surface properties of nanocrystalline oxides through spectroscopy, while also engineering UHV components
@@ -1035,7 +1036,7 @@ export default function Home() {
                 </p>
                 <p className="text-gray-300 mb-4 leading-relaxed">
                   <span className='text-blue-400'> Graph Convolutional Networks</span> are used to analyze the topological properties of this graph, enabling the prediction of spatial
-                   patterns such as syncytial-dominated or unfused-dominated regions. By leveraging self-supervised learning on small subgraphs--given that our
+                   patterns such as <span className='text-blue-400'>syncytial</span>-dominated or unfused-dominated regions. By leveraging self-supervised learning on small subgraphs--given that our
                    nodes carry no labels--and higher-order neighbor aggregation, these networks aim to uncover consistent structural features, 
                    offering a deeper understanding of spatial heterogeneity.
                 </p>
@@ -1082,7 +1083,7 @@ export default function Home() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-4">
                     <div className="text-center">
                       <img 
-                        src="/voronoi.jpg" 
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/voronoi.jpg`} 
                         alt="Voronoi Diagram Visualization"
                         className="w-full h-auto rounded border border-gray-600"
                         onError={(e) => {
@@ -1094,7 +1095,7 @@ export default function Home() {
                     </div>
                     <div className="text-center">
                       <img 
-                        src="/delaunay.png" 
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/delaunay.png`} 
                         alt="Delaunay Triangulation Visualization"
                         className="w-full h-auto rounded border border-gray-600"
                         onError={(e) => {
@@ -1108,7 +1109,7 @@ export default function Home() {
                   {/* New line for contrastive.webp */}
                   <div className="text-center mt-6 col-span-2">
                     <img 
-                      src="/GraphCL.png" 
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/GraphCL.png`} 
                       alt="Contrastive Visualization"
                       className="w-full h-auto rounded border border-gray-600"
                     />
