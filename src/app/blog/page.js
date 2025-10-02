@@ -9,31 +9,15 @@ export default function Blog() {
   const [articles] = useState([
     {
       id: 1,
-      title: "Graph Neural Networks in Biological Systems",
-      excerpt: "Exploring the application of Graph Convolutional Networks to understand spatial patterns in cellular biology...",
-      date: "2024-09-30",
-      category: "Machine Learning",
-      readTime: "8 min read"
-    },
-    {
-      id: 2,
-      title: "Topological Data Analysis: Beyond Euclidean Space",
-      excerpt: "Understanding complex data structures through the lens of persistent homology and topological features...",
-      date: "2024-09-25", 
-      category: "Mathematics",
-      readTime: "12 min read"
-    },
-    {
-      id: 3,
-      title: "CUDA Optimization for Scientific Computing",
-      excerpt: "Parallelizing computational algorithms on NVIDIA GPUs for high-performance scientific applications...",
-      date: "2024-09-20",
-      category: "Programming",
-      readTime: "10 min read"
+      title: "Trial Article",
+      excerpt: "Tired of reading everything being written using ChatGPT so here's to writing with plenty of errors like a human",
+      date: "2025-10-02",
+      category: "Life",
+      readTime: "2 min read"
     }
   ]);
 
-  const categories = ["All", "Machine Learning", "Mathematics", "Programming"];
+  const categories = ["All", "Machine Learning", "Mathematics", "Life"];
   
   const filteredArticles = selectedCategory === "All" 
     ? articles 
@@ -64,7 +48,7 @@ export default function Blog() {
               kernel space
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              where the thoughts and the grammar are questionable
+              where the thoughts (and the grammar) are questionable
             </p>
           </div>
 

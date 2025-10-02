@@ -11,63 +11,13 @@ export default function BlogPost() {
   const articles = {
     "1": {
       id: 1,
-      title: "Graph Neural Networks in Biological Systems",
-      date: "2024-09-30",
-      category: "Machine Learning",
-      readTime: "8 min read",
+      title: "A Safe Space",
+      date: "2025-10-02",
+      category: "Life",
+      readTime: "2 min read",
       content: `
         <h2>Introduction</h2>
-        <p>Graph Neural Networks (GNNs) have emerged as a powerful tool for analyzing complex biological systems. Unlike traditional machine learning approaches that work with Euclidean data, GNNs can directly process graph-structured data, making them particularly suited for biological applications where relationships between entities are as important as the entities themselves.</p>
-        
-        <h2>Applications in Cellular Biology</h2>
-        <p>In our research, we focus on applying Graph Convolutional Networks to understand spatial patterns in cellular systems. By representing cellular assays as graphs where nuclei serve as nodes and spatial relationships define edges, we can leverage the power of GNNs to predict complex biological behaviors.</p>
-        
-        <h2>Implementation Challenges</h2>
-        <p>One of the primary challenges in applying GNNs to biological data is the semi-supervised nature of the problem. Biological labels are often sparse or expensive to obtain, requiring innovative approaches to leverage unlabeled data effectively.</p>
-        
-        <h2>Future Directions</h2>
-        <p>The integration of persistent homology with GNN architectures represents an exciting frontier for understanding biological systems at multiple scales. By combining topological data analysis with graph-based learning, we can capture both local interactions and global structural patterns.</p>
-      `
-    },
-    "2": {
-      id: 2,
-      title: "Topological Data Analysis: Beyond Euclidean Space",
-      date: "2024-09-25",
-      category: "Mathematics", 
-      readTime: "12 min read",
-      content: `
-        <h2>Understanding Non-Euclidean Data</h2>
-        <p>Traditional data analysis methods often assume that data lies in Euclidean space, but many real-world datasets exhibit complex topological structures that cannot be captured by conventional approaches. Topological Data Analysis (TDA) provides a mathematical framework for understanding these structures.</p>
-        
-        <h2>Persistent Homology</h2>
-        <p>At the heart of TDA lies persistent homology, a method that tracks topological features across multiple scales. By examining how holes, connected components, and higher-dimensional voids persist as we change resolution, we gain insights into the underlying structure of our data.</p>
-        
-        <h2>Applications in Scientific Computing</h2>
-        <p>From protein folding to cosmological data analysis, TDA has found applications across diverse scientific domains. The ability to quantify shape and structure in a scale-invariant manner makes it particularly valuable for understanding complex systems.</p>
-        
-        <h2>Computational Considerations</h2>
-        <p>While powerful, TDA computations can be computationally intensive. Recent advances in GPU acceleration and parallel algorithms are making these methods more accessible for large-scale applications.</p>
-      `
-    },
-    "3": {
-      id: 3,
-      title: "CUDA Optimization for Scientific Computing",
-      date: "2024-09-20",
-      category: "Programming",
-      readTime: "10 min read", 
-      content: `
-        <h2>The Need for Parallel Computing</h2>
-        <p>Modern scientific applications often require processing vast amounts of data or performing computationally intensive algorithms. Traditional CPU-based approaches can become bottlenecks, necessitating the use of parallel computing architectures like GPUs.</p>
-        
-        <h2>CUDA Programming Model</h2>
-        <p>NVIDIA's CUDA platform provides a framework for leveraging GPU parallelism in scientific applications. Understanding the CUDA programming model, including concepts like threads, blocks, and grids, is essential for effective GPU programming.</p>
-        
-        <h2>Optimization Strategies</h2>
-        <p>Effective CUDA optimization requires careful consideration of memory access patterns, thread divergence, and occupancy. Techniques like coalesced memory access and shared memory utilization can dramatically improve performance.</p>
-        
-        <h2>Real-world Applications</h2>
-        <p>In our research, we've successfully applied CUDA optimization to accelerate topological computations, achieving significant speedups over CPU implementations while maintaining numerical accuracy.</p>
-      `
+        <p>Give me a minute or two to come up with something meaningful to actually put here. In the meantime, I will continue building the rest of the website</p>`
     }
   };
 
